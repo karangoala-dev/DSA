@@ -1,0 +1,1 @@
+cout << "Move plate " << n << " from " << aux << " to " << to << " via " << from << endl;
