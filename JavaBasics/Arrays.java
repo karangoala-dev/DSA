@@ -9,8 +9,8 @@ public class Arrays {
             squares[i] = nums[i] * nums[i];
         }
         System.out.print("Nums array is : ");
-        for(int i = 0; i < nums.length; i++){
-            System.out.print(nums[i] + " ");
+        for(int i : nums){
+            System.out.print(i + " ");
         }
         System.out.println();
         System.out.print("Squares array is : ");
