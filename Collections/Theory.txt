@@ -1,0 +1,27 @@
+1. List Interface with ArrayList Implementation:
+List<Integer> arrayList = new ArrayList<>();
+Explanation: This declares a List reference, which is an interface, and assigns it to an ArrayList object. ArrayList is the concrete class that implements the List interface.
+
+2. List Interface with LinkedList Implementation:
+List<Integer> linkedList = new LinkedList<>();
+Explanation: This declares a List reference, and assigns it to a LinkedList object. LinkedList is another class that implements the List interface.
+
+3. Queue Interface with LinkedList Implementation:
+Queue<Integer> queue = new LinkedList<>();
+Explanation: This declares a Queue reference, and assigns it to a LinkedList object. Since LinkedList also implements the Queue interface, this works for a queue.
+
+4. Queue Interface with PriorityQueue Implementation:
+Queue<Integer> priorityQueue = new PriorityQueue<>();
+Explanation: This declares a Queue reference and assigns it to a PriorityQueue object. PriorityQueue is a class that implements the Queue interface but orders its elements based on their priority.
+
+5. Plain ArrayList Declaration:
+ArrayList<Integer> arrayList = new ArrayList<>();
+Explanation: This directly uses the ArrayList class without the List interface. It is a concrete instantiation of the ArrayList class.
+
+6. Plain LinkedList Declaration:
+LinkedList<Integer> linkedList = new LinkedList<>();
+Explanation: This directly uses the LinkedList class without the List interface. It is a concrete instantiation of the LinkedList class.
+
+Summary:
+List is the interface, and both ArrayList and LinkedList are implementations of the List interface.
+Queue is another interface, and LinkedList and PriorityQueue can both implement this interface.

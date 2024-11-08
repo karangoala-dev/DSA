@@ -24,5 +24,15 @@ public class Strings {
         for(String word: words){
             System.out.println(word);    
         }
+        
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("Strings are immutable in Java");
+
+        String text = "Computer";
+        text.concat(" Programming");
+        System.out.println(text); //will output "Computer" as string is immutable.
+
+        text = text.concat(" Programming"); //Now, we are reassigning a value to string variable so it will print "Computer Programming".
+        System.out.println(text);
     }
 }
