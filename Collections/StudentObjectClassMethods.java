@@ -59,6 +59,14 @@ package Collections;
 // This hashCode implementation will consistently return the same hash code for Student objects with identical rollNumber values, which is necessary to 
 // maintain the hashCode contract.
 
+//Example
+// Student student1 = new Student("Alice", 101);
+// Student student2 = new Student("Bob", 101);
+
+// System.out.println(student1.equals(student2)); // true, because rollNumber is the same
+// System.out.println(student1.hashCode() == student2.hashCode()); // true, same hash code
+
+
 
 public class StudentObjectClassMethods {
     
