@@ -1,13 +1,12 @@
-package Collections;
+package CollectionsFramework;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.LinkedList;
 
-public class LinkedLists {
+public class ArrayLists {
     public static void main(String[] args) {
-        LinkedList<Integer> arrayList = new LinkedList<>();
+        ArrayList<Integer> arrayList = new ArrayList<>();
         arrayList.add(1);
         arrayList.add(2);
         arrayList.add(3);
@@ -52,7 +51,7 @@ public class LinkedLists {
         System.out.println("-------------------clone() Creates a shallow copy of the list----------------------");
         //clone() – Creates a shallow copy of the list.
 
-        LinkedList<Integer> newArrayList = (LinkedList<Integer>) arrayList.clone();
+        ArrayList<Integer> newArrayList = (ArrayList<Integer>) arrayList.clone();
         System.out.println(newArrayList);
     }
 }

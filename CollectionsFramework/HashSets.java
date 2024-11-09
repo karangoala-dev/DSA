@@ -1,13 +1,11 @@
-package Collections;
+package CollectionsFramework;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
-public class LinkedHashSets {
+public class HashSets {
     public static void main(String[] args) {
-        //Same as HashSet
-        Set<Integer> set = new LinkedHashSet<>();
-        //Maintains order in which data is entered unlike HashSet
+        // Cannot accept duplicate elements
+        Set<Integer> set = new HashSet<>();
         set.add(1);
         set.add(2);
         set.add(3);
@@ -22,5 +20,5 @@ public class LinkedHashSets {
 
         set.remove(2);
         System.out.println(set);
-    }
+    }    
 }

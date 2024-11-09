@@ -1,14 +1,14 @@
-package Collections;
+package CollectionsFramework;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
-public class TreeSets {
+public class LinkedHashSets {
     public static void main(String[] args) {
         //Same as HashSet
-        Set<Integer> set = new TreeSet<>();
-        //Implements binary search tree and stores in a sorted order
-        set.add(10);
+        Set<Integer> set = new LinkedHashSet<>();
+        //Maintains order in which data is entered unlike HashSet
+        set.add(1);
         set.add(2);
         set.add(3);
         set.add(2);

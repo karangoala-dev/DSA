@@ -1,12 +1,14 @@
-package Collections;
+package CollectionsFramework;
 
-import java.util.*;
+import java.util.Set;
+import java.util.TreeSet;
 
-public class HashSets {
+public class TreeSets {
     public static void main(String[] args) {
-        // Cannot accept duplicate elements
-        Set<Integer> set = new HashSet<>();
-        set.add(1);
+        //Same as HashSet
+        Set<Integer> set = new TreeSet<>();
+        //Implements binary search tree and stores in a sorted order
+        set.add(10);
         set.add(2);
         set.add(3);
         set.add(2);
@@ -20,5 +22,5 @@ public class HashSets {
 
         set.remove(2);
         System.out.println(set);
-    }    
+    }
 }

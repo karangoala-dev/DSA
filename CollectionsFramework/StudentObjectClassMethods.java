@@ -1,4 +1,4 @@
-package Collections;
+package CollectionsFramework;
 
 //Every java class extends the "Object" class from java so it has toString, equals etc methods from default.
 //Here we defined our own and override it.
@@ -68,7 +68,7 @@ package Collections;
 
 
 
-public class StudentObjectClassMethods {
+public class StudentObjectClassMethods implements Comparable{
     
     String name;
     int rollNumber;
@@ -76,6 +76,14 @@ public class StudentObjectClassMethods {
     @Override
     public String toString() {
         return "Student [name=" + name + ", rollNumber=" + rollNumber + "]";
+    }
+
+    //For sorting the student objects
+    @Override
+    public int compareTo(Object o) {
+        //return +ve if this is greater, -ve if o/that is greater and 0 if equal
+        StudentObjectClassMethods that = (StudentObjectClassMethods) o;
+        return this.rollNumber - that.rollNumber;
     }
 
     @Override
