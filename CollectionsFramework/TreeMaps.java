@@ -19,7 +19,7 @@ public class TreeMaps {
         if(map.containsValue(2)){
             System.out.println("Has 2 as a value");
         }
-
+        
         System.out.println(map.isEmpty() ? "Empty" : "Not empty");
         System.out.println(map);
         System.out.println(map.size());
@@ -30,7 +30,7 @@ public class TreeMaps {
             System.out.println("Entry : " + e + " | Key, Value : " + e.getKey() + "," + e.getValue());
         }
         //Iterate over the map keys
-        System.out.println("Iterating over the map values");
+        System.out.println("Iterating over the map keys");
         for(String e: map.keySet()){
             System.out.println("Key : " + e);
         }
