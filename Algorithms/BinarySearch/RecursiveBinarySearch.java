@@ -1,4 +1,4 @@
-package Algorithms;
+package Algorithms.BinarySearch;
 
 public class RecursiveBinarySearch {
     public static int binarySearch(int[] arr, int l, int h, int target){
