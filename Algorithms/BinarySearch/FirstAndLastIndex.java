@@ -26,8 +26,7 @@ public class FirstAndLastIndex {
     }
     public static int[] searchRange(int[] nums, int target) {
         if(nums.length < 1){
-            int[] res1 = {-1, -1};
-            return res1;
+            return new int[]{-1, -1};
         }
         int leftIndex = binarySearch(nums, target, true);
         int rightIndex = binarySearch(nums, target, false);
