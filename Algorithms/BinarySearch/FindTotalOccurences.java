@@ -9,9 +9,11 @@ public class FindTotalOccurences {
             if(arr[mid] == t){
                 ind = mid;
                 if(left){
+                    //look further on the left side
                     h = mid - 1;
                 }
                 else{
+                    //look further on the right side
                     l = mid + 1;
                 }
             }
