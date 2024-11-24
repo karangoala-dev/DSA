@@ -25,4 +25,15 @@ public class LinkedList {
         }
         System.out.println();
     }
+
+    public void deleteByValue(int data){
+        Node ptr = head;
+        while(ptr.next != null){
+            if(ptr.next.data == data){
+                ptr.next = ptr.next.next;
+                break;
+            }
+            ptr = ptr.next;
+        }
+    }
 }
