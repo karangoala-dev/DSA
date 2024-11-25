@@ -36,4 +36,14 @@ public class LinkedList {
             ptr = ptr.next;
         }
     }
+
+    public Node middleNode() {
+        Node f = head;
+        Node s = head;
+        while(f != null && f.next != null){
+            f = f.next.next;
+            s= s.next;
+        }
+        return s;
+    }
 }
