@@ -1,5 +1,7 @@
 package DataStructures.LinkedList;
 
+import java.util.Stack;
+
 public class LinkedList {
     Node head;
 
@@ -45,5 +47,21 @@ public class LinkedList {
             s= s.next;
         }
         return s;
+    }
+
+    public Node reverseLinkedListUsingStack(Node head) {
+        Stack<Integer> st = new Stack<>();
+        Node ptr = head;
+        while(ptr != null){
+            st.push(ptr.data);
+            ptr = ptr.next;
+        }
+        ptr = head;
+        while(!st.isEmpty()){
+            ptr.data = st.peek();
+            st.pop();
+            ptr = ptr.next;
+        }
+        return head;
     }
 }
