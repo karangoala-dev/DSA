@@ -10,5 +10,7 @@ public class Runner {
         ll.show();
         ll.deleteByValue(4);
         ll.show();
+        ll.reverseLinkedListIterative();
+        ll.show();
     }
 }

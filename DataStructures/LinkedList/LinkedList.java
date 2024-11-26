@@ -49,7 +49,7 @@ public class LinkedList {
         return s;
     }
 
-    public Node reverseLinkedListUsingStack(Node head) {
+    public Node reverseLinkedListUsingStack() {
         Stack<Integer> st = new Stack<>();
         Node ptr = head;
         while(ptr != null){
@@ -63,5 +63,17 @@ public class LinkedList {
             ptr = ptr.next;
         }
         return head;
+    }
+
+    public void reverseLinkedListIterative() {
+        Node prev = null;
+        Node ptr = head;
+        while(ptr != null){
+            Node nextPtr = ptr.next;
+            ptr.next = prev;
+            prev = ptr;
+            ptr = nextPtr;
+        }
+        head = prev;
     }
 }
