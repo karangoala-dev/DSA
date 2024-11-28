@@ -106,4 +106,32 @@ public class LinkedList {
 
         return null;
     }
+
+    public int countNodesinLoop(Node head) {
+        int res = 0;
+
+        Node f = head;
+        Node s = head;
+        Node h = head;
+
+        while(s != null && f != null && f.next != null){
+            s = s.next;
+            f = f.next.next;
+            if(s == f){
+                while(s != h){
+                    s = s.next;
+                    h = h.next;
+                }
+                res++;
+                s = s.next;
+                while(s != h){
+                    res++;
+                    s = s.next;
+                }
+                break;
+            }
+        }
+
+        return res;
+    }
 }
