@@ -76,4 +76,34 @@ public class LinkedList {
         }
         head = prev;
     }
+
+    public void printReverseRecursive(Node head){
+        if(head == null){
+            return;
+        }
+        printReverseRecursive(head.next);
+        System.out.print(head.data + "<-");
+    }
+
+    public Node findStartPointOfLoop(Node head) {
+        if(head == null || head.next == null){
+            return null;
+        }
+        Node s = head;
+        Node f = head;
+        Node h = head;
+        while(s != null && f != null && f.next != null){
+            s = s.next;
+            f = f.next.next;
+            if(s == f){
+                while(s != h){
+                    s = s.next;
+                    h = h.next;
+                }
+                return s;
+            }
+        }
+
+        return null;
+    }
 }
