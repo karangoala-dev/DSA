@@ -134,4 +134,35 @@ public class LinkedList {
 
         return res;
     }
+    public boolean isPalindrome(Node head) {
+        Node s = head;
+        Node f = head;
+        while(f != null && f.next != null){
+            s = s.next;
+            f = f.next.next;
+        }
+
+        //Now, s is at midpoint
+        Node prev = null;
+        while(s != null){
+            Node nextPtr = s.next;
+            s.next = prev;
+            prev = s;
+            s = nextPtr;
+        }
+
+        //Now, right half of LL is reversed. Prev pointer has the last node.
+        Node left = head;
+        Node right = prev;
+
+        while(right != null){
+            // System.out.println(left.next.val + "," + right.next.val);
+            if(left.data != right.data){
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
 }
