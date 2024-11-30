@@ -165,4 +165,24 @@ public class LinkedList {
         }
         return true;
     }
+
+    public Node oddEvenList(Node head) {
+        if(head == null){
+            return null;
+        }
+        Node o = head;
+        Node e = head.next;
+        Node evenHead = head.next;
+        while(o != null && e != null){
+            if(e.next == null){
+                break;
+            }
+            o.next = e.next;
+            e.next = e.next.next;
+            o = o.next;
+            e = e.next;
+        }
+        o.next = evenHead;
+        return head;
+    }
 }
