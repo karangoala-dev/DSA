@@ -8,7 +8,7 @@ public class BinarySearchTree {
     public Node root;
     public static Scanner scanner = new Scanner(System.in);
 
-    public Node insertANode(Node root, int val){
+    public Node insertANode(int val){
         if(root == null){
             return new Node(val);
         }
@@ -36,5 +36,14 @@ public class BinarySearchTree {
         return root;
     }
 
-
+    public Node bstBuilder(){
+        System.out.println("Enter total bst nodes -> ");
+        int n = scanner.nextInt();
+        while(n != 0){
+            int data = scanner.nextInt();
+            insertANode(data);
+            n--;
+        }
+        return root;
+    }
 }
