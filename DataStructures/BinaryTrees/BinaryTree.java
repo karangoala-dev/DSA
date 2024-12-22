@@ -28,7 +28,7 @@ public class BinaryTree {
     }
 
     //Level order traversal ( BFS )
-    public void levelOrderPrint(Node node) {
+    public static void levelOrderPrint(Node node) {
         if (node == null) {
             System.out.println("Tree is empty.");
             return;
