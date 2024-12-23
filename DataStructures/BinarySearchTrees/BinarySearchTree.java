@@ -36,6 +36,24 @@ public class BinarySearchTree {
         return root;
     }
 
+    public Node search(int val, Node root){
+        if(root == null){
+            return null;
+        }
+
+        if(root.val == val){
+            return root;
+        }
+
+        if(root.val < val){
+            return search(val, root.right);
+        }
+
+        else {
+            return search(val, root.left);
+        }
+    }
+
     public Node bstBuilder(){
         System.out.println("Enter total bst nodes -> ");
         int n = scanner.nextInt();
