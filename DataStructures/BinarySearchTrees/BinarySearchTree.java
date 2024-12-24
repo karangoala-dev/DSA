@@ -54,6 +54,22 @@ public class BinarySearchTree {
         }
     }
 
+    public Node findMin(){
+        Node ptr = root;
+        while(ptr.left != null){
+            ptr = ptr.left;
+        }
+        return ptr;
+    }
+
+    public Node findMax(){
+        Node ptr = root;
+        while(ptr.right != null){
+            ptr = ptr.right;
+        }
+        return ptr;
+    }
+
     public Node bstBuilder(){
         System.out.println("Enter total bst nodes -> ");
         int n = scanner.nextInt();
