@@ -1,0 +1,152 @@
+Data Structures in Java: Implementations and Use Cases
+
+1. Array
+Implementation: int[] arr = new int[size];
+Use Case:
+When you know the size of the collection beforehand.
+Need constant-time access by index.
+Pros: Fast access, low memory overhead.
+Cons: Fixed size, expensive resizing.
+
+2. ArrayList
+Implementation: ArrayList<E> list = new ArrayList<>();
+Use Case:
+Dynamic arrays when size is unknown or frequently changing.
+When you need fast random access and iteration.
+Pros: Dynamic resizing, fast read.
+Cons: Slow inserts/deletes in the middle due to shifting.
+
+3. LinkedList
+Implementation: LinkedList<E> list = new LinkedList<>();
+Use Case:
+When frequent insertions/deletions at the head or middle are required.
+When memory is not a constraint.
+Pros: Fast inserts/deletes.
+Cons: Slower random access compared to ArrayList.
+
+4. Stack
+Implementation:
+Stack<E> stack = new Stack<>(); (Legacy).
+Use Deque instead: Deque<E> stack = new ArrayDeque<>();.
+Use Case:
+When you need LIFO (Last In, First Out) operations.
+Common in recursion, parsing expressions, backtracking problems.
+Pros: Simple API for push/pop operations.
+Cons: Legacy Stack is slower; prefer Deque.
+
+5. Queue
+Implementation:
+Queue<E> queue = new LinkedList<>();
+Queue<E> queue = new ArrayDeque<>();
+Use Case:
+FIFO (First In, First Out) operations.
+Used in BFS, scheduling tasks, or when processing elements in order.
+Pros: Flexible implementations.
+Cons: LinkedList-based queues have higher memory overhead.
+
+6. PriorityQueue
+Implementation: PriorityQueue<E> pq = new PriorityQueue<>();
+Use Case:
+To retrieve elements based on priority rather than order.
+Used in scheduling, Dijkstra's algorithm, etc.
+Pros: Automatically sorts elements.
+Cons: Slower than basic queues for insertions.
+
+7. Deque (Double-Ended Queue)
+Implementation: Deque<E> deque = new ArrayDeque<>();
+Use Case:
+When elements need to be added or removed from both ends.
+Used in sliding window problems, undo functionality, or implementing stacks/queues.
+Pros: Highly efficient, array-backed implementation.
+Cons: None specific for most cases.
+
+8. HashMap
+Implementation: HashMap<K, V> map = new HashMap<>();
+Use Case:
+When you need fast key-value lookups.
+Used in caching, frequency counting, and dictionaries.
+Pros: O(1) average time complexity for insertions, deletions, and lookups.
+Cons: No ordering of elements.
+
+9. LinkedHashMap
+Implementation: LinkedHashMap<K, V> map = new LinkedHashMap<>();
+Use Case:
+When you need fast key-value lookups with predictable iteration order.
+Used in caching with access-order eviction policies.
+Pros: Maintains insertion/access order.
+Cons: Slightly higher overhead than HashMap.
+
+10. TreeMap
+Implementation: TreeMap<K, V> map = new TreeMap<>();
+Use Case:
+When you need a sorted map.
+Used in range queries or maintaining sorted order of keys.
+Pros: Maintains natural/comparator-defined ordering.
+Cons: O(log N) operations due to the underlying Red-Black tree.
+
+11. HashSet
+Implementation: HashSet<E> set = new HashSet<>();
+Use Case:
+When you need a collection of unique elements.
+Used in removing duplicates, membership testing.
+Pros: O(1) average time complexity.
+Cons: No ordering of elements.
+
+12. LinkedHashSet
+Implementation: LinkedHashSet<E> set = new LinkedHashSet<>();
+Use Case:
+Unique collection with predictable iteration order.
+Pros: Maintains insertion order.
+Cons: Higher overhead than HashSet.
+
+13. TreeSet
+Implementation: TreeSet<E> set = new TreeSet<>();
+Use Case:
+When you need a sorted set.
+Used in range queries or maintaining sorted order of elements.
+Pros: Sorted and navigable.
+Cons: O(log N) operations.
+
+14. Graph
+Implementation:
+Adjacency list: Map<Vertex, List<Vertex>> graph = new HashMap<>();
+Adjacency matrix: int[][] matrix = new int[n][n];
+Use Case:
+Representing networks, dependency graphs, and connections.
+Use adjacency list for sparse graphs, adjacency matrix for dense graphs.
+Pros: Flexible representation.
+Cons: Adjacency matrix wastes space for sparse graphs.
+
+15. Trie
+Implementation: Custom implementation, usually using a HashMap for children.
+Use Case:
+When you need efficient prefix-based searches.
+Used in autocomplete, dictionary lookups.
+Pros: Optimized for prefix-based operations.
+Cons: Memory-intensive for large datasets.
+
+16. Heap
+Implementation: PriorityQueue or custom array-based heap.
+Use Case:
+Used in priority scheduling, finding the smallest/largest elements efficiently.
+Min-Heap (smallest at the top), Max-Heap (largest at the top).
+Pros: Fast insertion/removal of priority elements.
+Cons: Limited to priority-based operations.
+
+
+
+When to Use What?
+
+Use Case	                                    Recommended Data Structure
+-------------------------------------           ---------------------------------------------
+Fixed-size sequential data	                    Array
+Dynamic list with fast access	                ArrayList
+Frequent insertions/deletions	                LinkedList
+LIFO operations	                                Stack (prefer Deque)
+FIFO operations	                                Queue (prefer ArrayDeque)
+Priority-based retrieval	                    PriorityQueue or Heap
+Unique elements	                                HashSet / TreeSet (if sorted)
+Fast lookups (key-value pairs)	                HashMap / TreeMap (if sorted keys needed)
+Maintaining insertion/access order	            LinkedHashMap / LinkedHashSet
+Prefix-based searches	                        Trie
+Graph representation	                        Adjacency List (HashMap) / Adjacency Matrix

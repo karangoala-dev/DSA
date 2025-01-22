@@ -1,6 +1,7 @@
 package Algorithms.BinarySearch;
 
 public class InfiniteArraySearch {
+    // TC is O(Log n) + O(Log n) = O(Log n) / one log n for finding high value and one log n for binary search
     public static int binarySearch(int[] arr, int target, int l, int h){
         while(l <= h){
             int mid = l + ((h - l) / 2);
@@ -20,7 +21,7 @@ public class InfiniteArraySearch {
     public static int searchInfiniteArray(int[] arr, int target){
         int l = 0;
         int h = 1;
-        while(arr[h] < target){
+        while(arr[h] < target && h < arr.length){
             l = h;
             h = 2 * h;
         }
