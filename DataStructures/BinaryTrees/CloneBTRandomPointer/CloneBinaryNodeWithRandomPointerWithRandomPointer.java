@@ -1,4 +1,4 @@
-package DataStructures.BinaryNodeWithRandomPointers.CloneBTRandomPointer;
+package DataStructures.BinaryTrees.CloneBTRandomPointer;
 
 import DataStructures.BinaryTrees.CloneBTRandomPointer.NodeWithRandomPointer;
 
@@ -11,7 +11,7 @@ public class CloneBinaryNodeWithRandomPointerWithRandomPointer {
             return null;
         }
 
-        NodeWithRandomPointer clone = new NodeWithRandomPointer(node.data);
+        NodeWithRandomPointer clone = new NodeWithRandomPointer(node.val);
         clone.left = clone(node.left);
         clone.right = clone(node.right);
 
