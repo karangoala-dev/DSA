@@ -42,6 +42,28 @@ public class MergeKSortedLists {
         return res;
     }
 
+    public Node mergeHelper(Node[] lists, int l, int r){
+        if(l == r){
+            return lists[l];
+        }
+
+        int mid = ((r - l) / 2) + l;
+        Node left = mergeHelper(lists, l, mid);
+        Node right = mergeHelper(lists, mid + 1, r);
+
+        return mergeTwoLists(left, right);
+    }
+    public Node mergeKLists_TC_O_NLogK(Node[] lists) {
+        if(lists.length == 0){
+            return null;
+        }
+        if(lists.length == 1){
+            return lists[0];
+        }
+
+        return mergeHelper(lists, 0, lists.length - 1);
+    }
+
     public static void main(String[] args) {
 
     }
