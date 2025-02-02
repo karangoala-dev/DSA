@@ -22,5 +22,25 @@ public class Main {
         System.out.println(minHeap.extractMin());
         minHeap.printHeap();
 
+        System.out.println("Testing maxHeap");
+        MaxHeap maxHeap = new MaxHeap();
+        maxHeap.insert(-1);
+        maxHeap.insert(10);
+        maxHeap.insert(-5);
+        maxHeap.insert(20);
+        maxHeap.insert(2);
+        maxHeap.insert(8);
+        maxHeap.insert(-20);
+        maxHeap.insert(-2);
+        maxHeap.insert(88);
+        maxHeap.insert(20);
+        System.out.println("Printing maxHeap");
+        maxHeap.printHeap();
+        System.out.println("Printing max element");
+        System.out.println(maxHeap.getMax());
+        System.out.println("Removing max element");
+        System.out.println(maxHeap.extractMax());
+        maxHeap.printHeap();
+
     }
 }

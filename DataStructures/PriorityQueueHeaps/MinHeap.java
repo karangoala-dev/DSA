@@ -19,15 +19,18 @@ public class MinHeap {
     }
 
     public int extractMin(){
-        if(minHeap.size() == 0){
+        if(minHeap.isEmpty()){
             throw new IllegalArgumentException("Min Heap is Empty fren");
         }
-
         int min = minHeap.get(0);
         int lastElement = minHeap.get(minHeap.size() - 1);
-        minHeap.set(0, lastElement);
         minHeap.remove(minHeap.size() - 1);
-        heapifyDown();
+
+        if (!minHeap.isEmpty()) {
+            minHeap.set(0, lastElement);
+            heapifyDown();
+        }
+
         return min;
     }
 
@@ -45,7 +48,7 @@ public class MinHeap {
     }
 
     public void heapifyDown(){
-        int index = 0, N = minHeap.size() - 1;
+        int index = 0, N = minHeap.size();
         while(true){
             int leftChild = 2 * index + 1;
             int rightChild = 2 * index + 2;
