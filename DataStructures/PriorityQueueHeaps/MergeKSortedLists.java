@@ -53,6 +53,23 @@ public class MergeKSortedLists {
 
         return mergeTwoLists(left, right);
     }
+
+    //Explanation of the O(N Log K) solution. For a list of LL as shown below
+    //lists = [L1, L2, L3, L4]
+    //    mergeHelper(lists, 0, 3)
+    //    |
+    //    |-- mergeHelper(lists, 0, 1)   → Merges L1 and L2
+    //    |   |
+    //    |   |-- mergeHelper(lists, 0, 0) → Returns L1 (base case)
+    //    |   |-- mergeHelper(lists, 1, 1) → Returns L2 (base case)
+    //    |
+    //    |-- mergeHelper(lists, 2, 3)   → Merges L3 and L4
+    //    |   |
+    //    |   |-- mergeHelper(lists, 2, 2) → Returns L3 (base case)
+    //    |   |-- mergeHelper(lists, 3, 3) → Returns L4 (base case)
+    //    |
+    //    |-- mergeTwoLists(result of L1 & L2, result of L3 & L4) → Final merged list
+    //
     public Node mergeKLists_TC_O_NLogK(Node[] lists) {
         if(lists.length == 0){
             return null;
