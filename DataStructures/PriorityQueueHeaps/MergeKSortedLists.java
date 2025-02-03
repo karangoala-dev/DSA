@@ -2,6 +2,8 @@ package DataStructures.PriorityQueueHeaps;
 
 import DataStructures.LinkedList.Node;
 
+import java.util.PriorityQueue;
+
 public class MergeKSortedLists {
     public Node mergeTwoLists(Node a, Node b){
         Node dummy = new Node(-1);
@@ -28,6 +30,7 @@ public class MergeKSortedLists {
 
         return head.next;
     }
+    //APPROACH #1
     public Node mergeKLists_TC_O_KN(Node[] lists) {
         int n = lists.length;
         if(n == 1){
@@ -54,6 +57,7 @@ public class MergeKSortedLists {
         return mergeTwoLists(left, right);
     }
 
+    //APPROACH #2
     //Explanation of the O(N Log K) solution. For a list of LL as shown below
     //lists = [L1, L2, L3, L4]
     //    mergeHelper(lists, 0, 3)
@@ -79,6 +83,29 @@ public class MergeKSortedLists {
         }
 
         return mergeHelper(lists, 0, lists.length - 1);
+    }
+
+    //APPROACH #3
+    public Node mergeKLists_TC_O_NLogK_PriorityQueue(Node[] lists) {
+        PriorityQueue<Node> pq = new PriorityQueue<>((o1, o2) -> o1.data > o2.data ? 1 : -1);
+        Node dummy = new Node(Integer.MIN_VALUE);
+        Node ptr = dummy;
+
+        for(int i = 0; i < lists.length; i++){
+            if(lists[i] != null){
+                pq.add(lists[i]);
+            }
+        }
+
+        while(pq.size() != 0){
+            Node current = pq.poll();
+            if(current.next != null){
+                pq.add(current.next);
+            }
+            ptr.next = current;
+            ptr = ptr.next;
+        }
+        return dummy.next;
     }
 
     public static void main(String[] args) {
