@@ -16,6 +16,7 @@ public class JumpGame2 {
         return res;
     }
 
+    //This recursive approach has exponential time complexity, so cant use this fren
     public static int jump_recursive(int[] nums) {
         return helper(nums, 0, 0);
     }
