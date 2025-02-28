@@ -63,6 +63,37 @@ public class Candy {
 
         return res;
     }
+    //Most optimised TC: O(N) / SC: O(1)
+    public int candy(int[] ratings) {
+        int i = 1, res = 1, n = ratings.length;
+        while(i < n){
+            if(ratings[i] == ratings[i - 1]){
+                res += 1;
+                i++;
+                continue;
+            }
+
+            //Now check for upward and downward slopes
+            int peak = 1;
+            while(i < n && ratings[i] > ratings[i - 1]){
+                peak++;
+                res += peak;
+                i++;
+            }
+
+            int down = 1;
+            while(i < n && ratings[i] < ratings[i - 1]){
+                res += down;
+                down++;
+                i++;
+            }
+
+            if(down > peak){
+                res += (down - peak);
+            }
+        }
+        return res;
+    }
     public static void main(String[] args) {
         Candy candy = new Candy();
         int[] arr = new int[]{1,2,87,87,87,2,1};
