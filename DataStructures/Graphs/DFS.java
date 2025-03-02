@@ -18,7 +18,7 @@ public class DFS {
             return ;
         }
 
-        System.out.println(node);
+        System.out.print(node);
         isVisited[node] = 1;
 
         List<Integer> neighbours = graph.getNeighbors(node);
