@@ -1,8 +1,21 @@
 package DataStructures.Graphs;
 
-public class AdjacencyMatrix {
+import java.util.List;
+
+public class AdjacencyMatrix implements Graph{
     public int[][] adjacencyMatrix;
     public int n;
+
+    @Override
+    public int getSize() {
+        return this.n;
+    }
+
+    @Override
+    public List<Integer> getNeighbors(int node) {
+        return List.of();
+    }
+
     public AdjacencyMatrix(int n){
         this.adjacencyMatrix = new int[n + 1][n + 1];
         this.n = n;

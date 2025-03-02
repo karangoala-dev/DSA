@@ -2,9 +2,20 @@ package DataStructures.Graphs;
 
 import java.util.*;
 
-public class AdjacencyList {
+public class AdjacencyList implements Graph{
     public ArrayList<ArrayList<Integer>> adjacencyList;
     public int n;
+
+    public int getSize(){
+        return this.n;
+    }
+
+    @Override
+    public List<Integer> getNeighbors(int node) {
+        List<Integer> res = new ArrayList<>();
+        return adjacencyList.get(node);
+    }
+
     public AdjacencyList(int n){
         this.n = n;
         this.adjacencyList = new ArrayList<>(n + 1);
