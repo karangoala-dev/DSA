@@ -1,11 +1,10 @@
 package DataStructures.Graphs;
 
-public class AdjacencyMatrixUndirected {
+public class AdjacencyMatrixDirected {
     static int[][] adjacencyMatrix;
 
     static void addEdge(int u, int v) {
         adjacencyMatrix[u][v] = 1;
-        adjacencyMatrix[v][u] = 1;
     }
 
     static void printMatrix(int n) {
@@ -26,8 +25,8 @@ public class AdjacencyMatrixUndirected {
         addEdge(2, 4);
         addEdge(2, 3);
         addEdge(3, 5);
-        addEdge(1, 2);
-        addEdge(1, 3);
+        addEdge(2, 1);
+        addEdge(3, 1);
 
         printMatrix(5);
     }
