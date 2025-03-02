@@ -26,7 +26,7 @@ public class BFS {
             int size = queue.size();
             for(int i = 0; i < size; i++){
                 int current = queue.poll();
-                System.out.print(current);
+                System.out.print(current + " ");
                 List<Integer> currentNodeNeighbours = this.graph.getNeighbors(current);
                 for(int num: currentNodeNeighbours){
                     if(isVisited[num] == 0){
