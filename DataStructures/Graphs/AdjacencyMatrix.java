@@ -1,5 +1,6 @@
 package DataStructures.Graphs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdjacencyMatrix implements Graph{
@@ -13,7 +14,11 @@ public class AdjacencyMatrix implements Graph{
 
     @Override
     public List<Integer> getNeighbors(int node) {
-        return List.of();
+        List<Integer> res = new ArrayList<>();
+        for(int i = 1; i <= n; i++){
+            res.add(adjacencyMatrix[node][i]);
+        }
+        return res;
     }
 
     public AdjacencyMatrix(int n){
