@@ -17,6 +17,11 @@ public class Main {
         bfsAdjList.printBFS(1);
         System.out.println();
 
+        System.out.println("DFS using Adjacency List (starting from node 1):");
+        DFS dfsAdjList = new DFS(graphList);
+        dfsAdjList.printDFS(1);
+        System.out.println();
+
         // Create an adjacency matrix graph
         AdjacencyMatrix graphMatrix = new AdjacencyMatrix(7);
         graphMatrix.addEdge(false, 1, 2);
@@ -30,5 +35,10 @@ public class Main {
         System.out.println("BFS using Adjacency Matrix (starting from node 1):");
         BFS bfsAdjMatrix = new BFS(graphMatrix);
         bfsAdjMatrix.printBFS(1);
+
+        System.out.println("DFS using Adjacency Matrix (starting from node 1):");
+        DFS dfsAdjMatrix = new DFS(graphMatrix);
+        dfsAdjMatrix.printDFS(1);
+        System.out.println();
     }
 }
