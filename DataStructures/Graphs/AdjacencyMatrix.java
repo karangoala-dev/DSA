@@ -16,7 +16,9 @@ public class AdjacencyMatrix implements Graph{
     public List<Integer> getNeighbors(int node) {
         List<Integer> res = new ArrayList<>();
         for(int i = 1; i <= n; i++){
-            res.add(adjacencyMatrix[node][i]);
+            if(adjacencyMatrix[node][i] == 1){
+                res.add(i);
+            }
         }
         return res;
     }
