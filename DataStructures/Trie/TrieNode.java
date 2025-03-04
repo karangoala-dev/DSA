@@ -7,6 +7,7 @@ public class TrieNode {
     public boolean isEndOfWord;
 
     public TrieNode(boolean flag){
+        this.children = new HashMap<>();
         this.isEndOfWord = flag;
     }
 }

@@ -21,6 +21,16 @@ public class Trie {
         node.isEndOfWord = true;
     }
 
+    public void addWordsRecursive(TrieNode node, String word, List<String> list){
+        if(node.isEndOfWord){
+            list.add(word);
+        }
+
+        for(Map.Entry<Character, TrieNode> entry: node.children.entrySet()){
+            addWordsRecursive(entry.getValue(), word + entry.getKey(), list);
+        }
+    }
+
     public List<String> getResults(String prefix){
         List<String> res = new ArrayList<>();
         TrieNode node = root;
@@ -34,13 +44,7 @@ public class Trie {
             i++;
         }
         //Now node is at last character of prefix
-        for(Map.Entry<Character, TrieNode> entry: node.children.entrySet()){
-            String current = "";
-            TrieNode currentNode = entry.getValue();
-//            while(currentNode.isEndOfWord == false){
-//
-//            }
-        }
+        addWordsRecursive(node, prefix, res);
         return res;
     }
 }
