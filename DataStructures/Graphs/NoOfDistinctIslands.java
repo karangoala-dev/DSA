@@ -32,6 +32,9 @@ public class NoOfDistinctIslands {
                 if(visited[i][j] == 0 && grid[i][j] == 1){
                     ArrayList<String> list = new ArrayList<>();
                     dfs(grid, visited, i, j, list, i, j);
+                    //This works because we are subtracting r,c of the base cell for each island and since we follow top to bottom and left to right
+                    //the result after subtracting base cell from each cell for same pattern will yield same result at everytime if same order is maintained for dfs traversal.
+                    //Here, we do it using the row and col arrays
                     set.add(list);
                 }
             }
