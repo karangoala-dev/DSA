@@ -38,6 +38,8 @@ public class BipartitGraphUndirected {
         int n = graph.length;
         int[] colored = new int[n];
         boolean res = true;
+        //This is done to check unconnected components. Since unconnected components are always bipartite, we need only one occurence of non-bipartite component
+        //to deem whole graph as non-bipartite, so and operation is done.
         for(int i = 0; i < n; i++){
             if(colored[i] == 0){
                 res = res && bfs(graph, i, colored);
