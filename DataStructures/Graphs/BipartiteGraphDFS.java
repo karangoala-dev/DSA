@@ -17,15 +17,19 @@ public class BipartiteGraphDFS {
         boolean res = true;
         for(int i = 0; i < neighbours.length; i++){
             if(colored[neighbours[i]] == 0){
-                res = res && dfs(graph, neighbours[i], colored, colored[start]);
+                if(!dfs(graph, neighbours[i], colored, colored[start])){
+                    return false;
+                }
             }
             else{
+                //if already colored, check if same color present.
                 if(colored[neighbours[i]] == colored[start]){
                     return false;
                 }
             }
         }
-        return res;
+        //If all passed then return true
+        return true;
     }
     public boolean isBipartite(int[][] graph) {
         int n = graph.length;
