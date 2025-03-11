@@ -2,7 +2,7 @@ package DataStructures.Graphs;
 
 import java.util.*;
 
-public class BipartitGraphUndirected {
+public class BipartiteGraphBFS {
     public boolean bfs(int[][] graph, int start, int[] colored){
         int n = graph.length;
         Queue<Integer> q = new LinkedList<>();
