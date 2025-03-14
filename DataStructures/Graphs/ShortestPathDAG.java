@@ -59,6 +59,11 @@ public class ShortestPathDAG {
                 dist[node.v] = Math.min(dist[node.v], node.w + dist[currentNode]);
             }
         }
+        for(int i = 0; i < dist.length; i++){
+            if(dist[i] == 100001){
+                dist[i] = -1;
+            }
+        }
         return dist;
     }
     public static void main(String[] args) {
