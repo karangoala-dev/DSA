@@ -1,6 +1,7 @@
 package DataStructures.Graphs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Stack;
 
 //This uses topological sort(any, BFS/DFS) to gather the result. Return array of minimum distance weight from 0. (What if source is dynamic?)
@@ -30,6 +31,7 @@ public class ShortestPathDAG {
     //Edges are like [i,j,k] -> i and j are nodes like i->j and k is the weight
     public int[] shortestPath(int n, int E, int[][] edges) {
         int dist[] = new int[n];
+        Arrays.fill(dist, 100001);
         ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
         for(int i = 0; i < n; i++){
             adj.add(new ArrayList<>());
@@ -48,8 +50,15 @@ public class ShortestPathDAG {
             }
         }
 
-
-
+        //Now topological sort is done
+        dist[0] = 0;
+        while(!st.isEmpty()){
+            int currentNode = st.pop();
+            ArrayList<Pair> neighbours = adj.get(currentNode);
+            for(Pair node: neighbours){
+                dist[node.v] = Math.min(dist[node.v], node.w + dist[currentNode]);
+            }
+        }
         return dist;
     }
     public static void main(String[] args) {
