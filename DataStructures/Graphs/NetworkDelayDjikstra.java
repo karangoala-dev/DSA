@@ -2,6 +2,15 @@ package DataStructures.Graphs;
 
 import java.util.*;
 
+//class iPair {
+//    int first, second;
+//
+//    iPair(int first, int second) {
+//        this.first = first;
+//        this.second = second;
+//    }
+//}
+
 public class NetworkDelayDjikstra {
     public int networkDelayTime(int[][] times, int n, int k) {
         int[] time = new int[n];
