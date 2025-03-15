@@ -26,6 +26,7 @@ public class DjikstraPriorityQueue {
             iPair currentNode = pq.poll();
             ArrayList<iPair> neighbours = adj.get(currentNode.first);
             for(iPair node: neighbours){
+                //Get current distance which is current node's distance from source + neighbour node's distance from current node(weight)
                 int currentDistance = currentNode.second + node.second;
                 //Shorter distance found, add to queue
                 if(currentDistance < res.get(node.first)){
