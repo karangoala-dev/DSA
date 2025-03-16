@@ -37,7 +37,7 @@ public class CheapestFlightsWithinKStops {
 
         int cost[] = new int[n];
         Arrays.fill(cost, Integer.MAX_VALUE);
-
+        cost[src] = 0;
         // Here, we use a queue instead of a priority queue because we need to process paths in order of stops (like BFS).
         // If we used a priority queue, a cheaper but higher-stop path might be processed first, preventing a valid K-stop path from being considered.
         // A queue ensures we explore all possible paths up to K stops before deciding the cheapest one.
