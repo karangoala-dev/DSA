@@ -43,7 +43,7 @@ public class BellmanFordAlgo {
         int[][] edges = {{1,0,5},{1,2,-2},{1,4,6},{2,3,3},{3,1,-4}};
         int src = 0;
 
-        int[] res = bellmanFord(4, edges, src);
+        int[] res = bellmanFord(V, edges, src);
 
         System.out.println(Arrays.toString(res));
     }
