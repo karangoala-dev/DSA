@@ -6,8 +6,11 @@ public class NegativeCycleDetection {
     public int isNegativeWeightCycle(int V, int[][] edges)
     {
         int[] dist = new int[V];
+        // Since we don't have a fixed src, we mark all distances as 0 initially
+        // This ensures that all nodes are considered equally for relaxation.
+        // After V-1 iterations, if any distance is still decreasing in the V-th iteration,
+        // it means we have a negative cycle in the graph.
         Arrays.fill(dist, 0);
-        // dist[0] = 0;
 
         for(int i = 0; i < V - 1; i++){
             for(int[] currentEdge: edges){
