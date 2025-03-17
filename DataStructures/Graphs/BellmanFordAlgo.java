@@ -8,7 +8,7 @@ public class BellmanFordAlgo {
         Arrays.fill(dist, (int) 1e8);
         dist[src] = 0;
 
-        for(int i = 0; i < V; i++){
+        for(int i = 0; i < V - 1; i++){
             for(int[] currentEdge: edges){
                 int u = currentEdge[0];
                 int v = currentEdge[1];
@@ -39,6 +39,12 @@ public class BellmanFordAlgo {
         return dist;
     }
     public static void main(String[] args) {
+        int V = 5;
+        int[][] edges = {{1,0,5},{1,2,-2},{1,4,6},{2,3,3},{3,1,-4}};
+        int src = 0;
 
+        int[] res = bellmanFord(4, edges, src);
+
+        System.out.println(Arrays.toString(res));
     }
 }
