@@ -4,6 +4,7 @@ import java.util.*;
 
 public class MinimumCostToReachDestination {
     //This class visible only to current file(Cant be defined outside the main class of this file)
+    //INCOMPLETE**********************************
     private static class Triad{
         int node;
         int cost;
@@ -36,29 +37,41 @@ public class MinimumCostToReachDestination {
             adj.get(curr[1]).add(new Duo(curr[0], curr[2]));
         }
 
-        Queue<Triad> q = new LinkedList<>();
+        PriorityQueue<Triad> q = new PriorityQueue<>((o1, o2) -> o1.cost - o2.cost);
         q.add(new Triad(0, passingFees[0], 0));
-        int cost[] = new int[n];
-        Arrays.fill(cost, Integer.MAX_VALUE);
+        int minTime[] = new int[n];
+        Arrays.fill(minTime, Integer.MAX_VALUE);
         while(!q.isEmpty()){
             Triad current = q.poll();
-            if(current.time < maxTime){
-                System.out.println("current time: " + current.time);
+            if(current.time >= maxTime)
+                continue;
+//            if(current.time < maxTime){
+//                System.out.println("current time: " + current.time);
+                minTime[current.node] = current.time;
+                if(current.node == n - 1){
+                    return minTime[current.node];
+                }
                 ArrayList<Duo> neighbours = adj.get(current.node);
                 for(Duo node: neighbours){
-                    if(current.cost + passingFees[node.node] < cost[node.node] && current.time + node.time <= maxTime){
-                        q.add(new Triad(node.node, passingFees[node.node] + current.cost, node.time + current.time));
-                        cost[node.node] = current.cost + passingFees[node.node];
+                    int time = current.time + node.time;
+                    int cost = current.cost + passingFees[node.node];
+                    if(time > maxTime || time > minTime[node.node]){
+                        continue;
                     }
+                    q.add(new Triad(node.node, cost, time));
                 }
-            }
+//            }
         }
-        return cost[n - 1] == Integer.MAX_VALUE ? -1 : cost[n - 1];
+        return -1;
     }
     public static void main(String[] args) {
         MinimumCostToReachDestination minimumCostToReachDestination = new MinimumCostToReachDestination();
-        int[][] edges = {{0,1,10},{1,2,10},{2,5,10},{0,3,1},{3,4,10},{4,5,15}};
-        int[] fees = {5,1,2,20,20,3};
-        System.out.println(minimumCostToReachDestination.minCost(30, edges, fees));
+        int[][] edges = {
+                {0, 1, 10},
+                {1, 2, 10},
+                {0, 2, 15}
+        };
+        int[] passingFees = {5, 1, 2};
+        System.out.println(minimumCostToReachDestination.minCost(25, edges, passingFees));
     }
 }
