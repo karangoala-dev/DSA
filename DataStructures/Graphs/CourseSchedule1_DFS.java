@@ -3,6 +3,7 @@ package DataStructures.Graphs;
 import java.util.*;
 
 public class CourseSchedule1_DFS {
+    //This is a simple DFS based cycle detection. Not Toposort
     public boolean canFinish(int n, int[][] prerequisites) {
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         for(int i = 0; i < n; i++){
