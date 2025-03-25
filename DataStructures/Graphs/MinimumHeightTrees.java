@@ -51,6 +51,55 @@ public class MinimumHeightTrees {
         return heightVsNodes.get(minKey);
     }
 
+    public List<Integer> findMinHeightTrees_optimised(int n, int[][] edges) {
+        List<Integer> res = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        int[] degree = new int[n];
+        for(int i = 0; i < n; i++){
+            adj.add(new ArrayList<>());
+        }
+        for(int[] edge: edges){
+            degree[edge[0]]++;
+            degree[edge[1]]++;
+            adj.get(edge[0]).add(edge[1]);
+            adj.get(edge[1]).add(edge[0]);
+        }
+
+        Queue<Integer> q = new LinkedList<>();
+        for(int i = 0; i < n; i++){
+            if(degree[i] == 1){
+                q.add(i);
+            }
+        }
+
+        while(!q.isEmpty()){
+            int size = q.size();
+            if(n <= 2){
+                break;
+            }
+            for(int i = 0; i < size; i++){
+                int curr = q.poll();
+                degree[curr]--;
+                n--;
+                ArrayList<Integer> nei = adj.get(curr);
+                for(int node: nei){
+                    degree[node]--;
+                    if(degree[node] == 1){
+                        q.add(node);
+                    }
+                }
+            }
+        }
+        if(q.isEmpty()){
+            return new ArrayList<>(Arrays.asList(0));
+        }
+        while(!q.isEmpty()){
+            res.add(q.poll());
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
         int n = 6;
         int[][] edges = {{3,0},{3,1},{3,2},{3,4},{5,4}};
