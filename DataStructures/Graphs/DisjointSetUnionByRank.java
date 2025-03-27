@@ -28,5 +28,28 @@ public class DisjointSetUnionByRank {
     public void unionByRank(int u, int v){
         int ultimateParentU = findParent(u);
         int ultimateParentV = findParent(v);
+
+        //If already connected then return
+        if(ultimateParentU == ultimateParentV){
+            return;
+        }
+
+        //If rank(u) < rank(v) then set u's parent as v(larger rank value means higher up)
+        if(rank.get(ultimateParentU) < rank.get(ultimateParentV)){
+            parent.set(ultimateParentU, ultimateParentV);
+        }
+        //If rank(u) > rank(v) then set parent of v as u.
+        else if(rank.get(ultimateParentU) > rank.get(ultimateParentV)){
+            parent.set(ultimateParentV, ultimateParentU);
+        }
+        //If same rank then set any value as parent of another, I set v as parent of u and also increment rank for v
+        else{
+            parent.set(ultimateParentU, ultimateParentV);
+            rank.set(ultimateParentV, rank.get(ultimateParentU) + 1);
+        }
+    }
+
+    public static void main(String[] args) {
+
     }
 }
