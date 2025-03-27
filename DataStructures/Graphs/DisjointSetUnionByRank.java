@@ -12,8 +12,8 @@ public class DisjointSetUnionByRank {
         for(int i = 0; i <= n + 1; i++){
             //Initially a node is a parent of itself
             //And rank is 0 for all
-            parent.set(i, i);
-            rank.set(i, 0);
+            parent.add(i);
+            rank.add(0);
         }
     }
 
@@ -22,7 +22,9 @@ public class DisjointSetUnionByRank {
             return node;
         }
         //Path compression
-        return parent.set(node, findParent(parent.get(node)));
+        int res = findParent(parent.get(node));
+        parent.set(node, res);
+        return  res;
     }
 
     public void unionByRank(int u, int v){
@@ -50,6 +52,16 @@ public class DisjointSetUnionByRank {
     }
 
     public static void main(String[] args) {
+        DisjointSetUnionByRank ds = new DisjointSetUnionByRank(7);
 
+        ds.unionByRank(1, 2);
+        ds.unionByRank(2, 3);
+        ds.unionByRank(4, 5);
+        ds.unionByRank(6, 7);
+        ds.unionByRank(5, 6);
+        System.out.println(ds.findParent(3) == ds.findParent(7)); // false
+
+        ds.unionByRank(3, 7);
+        System.out.println(ds.findParent(3) == ds.findParent(7)); // true
     }
 }
