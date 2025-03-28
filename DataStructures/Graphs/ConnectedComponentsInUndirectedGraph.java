@@ -2,6 +2,47 @@ package DataStructures.Graphs;
 
 import java.util.*;
 
+class DisjointSet{
+    int[] parent;
+    int[] rank;
+    DisjointSet(int n){
+        this.parent = new int[n];
+        this.rank = new int[n];
+        for(int i = 0; i < n; i++){
+            parent[i] = i;
+            rank[i] = 0;
+        }
+    }
+
+    public int findParent(int u){
+        if(parent[u] == u){
+            return u;
+        }
+
+        return parent[u] = findParent(parent[u]);
+    }
+
+    public void unionByRank(int u, int v){
+        int ulp_u = findParent(u);
+        int ulp_v = findParent(v);
+
+        if(ulp_u == ulp_v){
+            return;
+        }
+
+        if(rank[ulp_u] < rank[ulp_v]){
+            parent[ulp_u] = ulp_v;
+        }
+        else if(rank[ulp_v] < rank[ulp_u]){
+            parent[ulp_v] = ulp_u;
+        }
+        else {
+            parent[ulp_v] = ulp_u;
+            rank[ulp_u]++;
+        }
+    }
+}
+
 public class ConnectedComponentsInUndirectedGraph {
     public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj, int[] vis, int node, ArrayList<Integer> path){
         vis[node] = 1;
@@ -37,6 +78,17 @@ public class ConnectedComponentsInUndirectedGraph {
         return res;
     }
 
+    //Using union find
+    public void connectedcomponents(int n, int[][] edges) {
+        DisjointSet disjointSet = new DisjointSet(n);
+        for(int[] edge: edges){
+            disjointSet.unionByRank(edge[0], edge[1]);
+        }
+
+        System.out.println(Arrays.toString(disjointSet.parent));
+        System.out.println(Arrays.toString(disjointSet.rank));
+    }
+
     public static void main(String[] args) {
         ConnectedComponentsInUndirectedGraph soln = new ConnectedComponentsInUndirectedGraph();
         int n = 5;
@@ -48,5 +100,6 @@ public class ConnectedComponentsInUndirectedGraph {
             }
             System.out.println();
         }
+        soln.connectedcomponents(n, edges);
     }
 }
