@@ -41,7 +41,7 @@ public class ConnectedComponentsInUndirectedGraph {
         ConnectedComponentsInUndirectedGraph soln = new ConnectedComponentsInUndirectedGraph();
         int n = 5;
         int[][] edges = {{0, 1},{2, 1},{3, 4}};
-        ArrayList<ArrayList<Integer>> res = soln.connectedcomponents(n, edges);
+        ArrayList<ArrayList<Integer>> res = soln.connectedcomponents_UsingDFS(n, edges);
         for(ArrayList<Integer> curr: res){
             for(int a: curr){
                 System.out.print(a + " ");
