@@ -87,6 +87,8 @@ public class ConnectedComponentsInUndirectedGraph {
         HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
         ArrayList<ArrayList<Integer>> res = new ArrayList<>();
         for(int i = 0; i < n; i++){
+            //This find parent call does path compression and this is necessary as unionByRank method only does pathCompression for nodes being added to the union.
+            //Not on all nodes.
             int root = disjointSet.findParent(i);
             if(map.containsKey(root)){
                 map.get(root).add(i);
