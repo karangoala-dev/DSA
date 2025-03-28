@@ -79,14 +79,28 @@ public class ConnectedComponentsInUndirectedGraph {
     }
 
     //Using union find
-    public void connectedcomponents(int n, int[][] edges) {
+    public ArrayList<ArrayList<Integer>> connectedcomponents(int n, int[][] edges) {
         DisjointSet disjointSet = new DisjointSet(n);
         for(int[] edge: edges){
             disjointSet.unionByRank(edge[0], edge[1]);
         }
+        HashMap<Integer, ArrayList<Integer>> map = new HashMap<>();
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        for(int i = 0; i < n; i++){
+            int root = disjointSet.findParent(i);
+            if(map.containsKey(root)){
+                map.get(root).add(i);
+            }
+            else{
+                map.put(root, new ArrayList<>());
+                map.get(root).add(i);
+            }
+        }
 
-        System.out.println(Arrays.toString(disjointSet.parent));
-        System.out.println(Arrays.toString(disjointSet.rank));
+        for(Map.Entry<Integer, ArrayList<Integer>> entry: map.entrySet()){
+            res.add(entry.getValue());
+        }
+        return res;
     }
 
     public static void main(String[] args) {
