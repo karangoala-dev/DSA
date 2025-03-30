@@ -19,7 +19,7 @@ public class CheapestFlightsWithinKStops_BellmanFord {
                     if(cost[u] != Integer.MAX_VALUE){
                         //If cost till node u from previous iteration + weight is < current layer result of v
                         if(cost[u] + wt < temp[v]){
-                            //update current layer result for v
+                            //update current layer result for v only if cost[u]+wt is better than what we have so far in this iteration
                             temp[v] = cost[u] + wt;
                         }
                     }
