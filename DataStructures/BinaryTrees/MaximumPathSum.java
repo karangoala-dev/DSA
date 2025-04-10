@@ -12,25 +12,19 @@ package DataStructures.BinaryTrees;
 //        The return value of helper is the maximum unsplit path starting from the current node.
 
 public class MaximumPathSum {
-    public int res = 0;
+    int res = Integer.MIN_VALUE;
     public int helper(Node node){
-        if(node == null){
+        if(node == null)
             return 0;
-        }
 
-        int l = Math.max(helper(node.left), 0);
-        int r = Math.max(helper(node.right), 0);
+        int lSum = Math.max(helper(node.left), 0);
+        int rSum = Math.max(helper(node.right), 0);
+        res = Math.max(res, node.val + lSum + rSum);
 
-        // Max sum with split
-        res = Math.max(res, node.val + l + r);
-
-        //Return unsplitted value
-        return node.val + Math.max(l, r);
+        return node.val + Math.max(lSum, rSum);
     }
     public int maxPathSum(Node root) {
-        res = root.val;
-        helper(root);
-        return res;
+        return Math.max(helper(root), res);
     }
 
     public static void main(String[] args) {
