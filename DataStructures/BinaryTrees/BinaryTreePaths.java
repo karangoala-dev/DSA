@@ -3,7 +3,7 @@ package DataStructures.BinaryTrees;
 import java.util.*;
 
 public class BinaryTreePaths {
-    private static class TreeNode {
+    public class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
