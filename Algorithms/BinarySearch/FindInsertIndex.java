@@ -3,28 +3,26 @@ package Algorithms.BinarySearch;
 public class FindInsertIndex {
     //Basically, find lower bound in this qn
     public static int searchInsert(int[] nums, int target) {
-        int l = 0, h = nums.length - 1, res = -1;
-        if(nums.length == 0){
+        int l = 0, h = nums.length - 1, ans = -1;
+        if(target < nums[l])
             return 0;
-        }
-        if(target < nums[l]){
-            return l;
-        }
-        if(target > nums[h]){
-            return h + 1;
-        }
+        if(target > nums[h])
+            return nums.length;
+
+        //we need to find lower bound, i.e. first element greater than or equal to target
         while(l <= h){
-            int mid = (l + h) / 2;
+            int mid = l + ((h - l)/2);
             if(nums[mid] >= target){
-                res = mid;
-                //Check the left side further
+                //go left as there might be a smaller number greater than target
+                ans = mid;
                 h = mid - 1;
             }
             else{
+                //go right to look for a bigger no
                 l = mid + 1;
             }
         }
-        return res;
+        return ans;
     }
 
     public static void main(String[] args) {
