@@ -1,8 +1,6 @@
 package JavaBasics.Streams;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Basic {
@@ -23,8 +21,21 @@ public class Basic {
         System.out.println("Only starts with A or a strings: " + list3);
 
         //Count frequency of each character in a string using streams.
-        String string1 = "AnUltraLongStringWithoutANyMeanning";
-        List<Character> list4 = string1.chars().mapToObj(o -> (char)o).collect(Collectors.toList());
+        String string1 = "aababacdccdea";
+
+        //string1.chars() → gives IntStream of character codes
+        //.mapToObj(c -> (char) c) → converts int to Character
+        //.collect(Collectors.toList()) → makes a List<Character>
+        List<Character> list4 = string1.chars().mapToObj(o -> (char)o).map(o -> Character.toLowerCase(o)).collect(Collectors.toList());
         System.out.println("Character list is as follows : " + list4);
+        HashMap<Character, Integer> frequencyMap = new HashMap<>();
+        list4.stream().forEach(o -> {
+            int freq = frequencyMap.getOrDefault(o, 0);
+            frequencyMap.put(o, freq + 1);
+        });
+
+        for(Map.Entry<Character, Integer> entry: frequencyMap.entrySet()){
+            System.out.println("Key : " + entry.getKey() + " value: " + entry.getValue());
+        }
     }
 }
