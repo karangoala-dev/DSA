@@ -42,5 +42,17 @@ public class Basic {
         String string2 = "swiss"; //ans is w. not i (first non-repeated character)
         List<Character> list5 = string2.chars().mapToObj(o -> (char)o).toList();
 
+        //A linked hashmap maintains order in which data is inserted to it
+        LinkedHashMap<Character, Integer> map = new LinkedHashMap<>();
+        list5.stream().forEach(o -> {
+            int freq = map.getOrDefault(o, 0);
+            map.put(o, freq + 1);
+        });
+        for(Map.Entry<Character, Integer> entry: map.entrySet()){
+            if(entry.getValue() == 1){
+                System.out.println("First non-repeated character in string is : " + entry.getKey());
+                break;
+            }
+        }
     }
 }
