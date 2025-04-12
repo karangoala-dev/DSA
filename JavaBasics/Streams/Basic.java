@@ -3,6 +3,7 @@ package JavaBasics.Streams;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Basic {
     public static void main(String[] args) {
@@ -18,7 +19,12 @@ public class Basic {
 
         //Filter and collect all strings starting with "A" from a list.
         List<String> list3 = Arrays.asList("Abcde", "AdisAbaba", "Jakarta", "Japan", "charliE", "mAngo", "africa");
-        list3 = list3.stream().filter(o -> o.startsWith("A")).toList();
-        System.out.println("Only starts with A strings: " + list3);
+        list3 = list3.stream().filter(o -> o.startsWith("A") || o.startsWith("a")).toList();
+        System.out.println("Only starts with A or a strings: " + list3);
+
+        //Count frequency of each character in a string using streams.
+        String string1 = "AnUltraLongStringWithoutANyMeanning";
+        List<Character> list4 = string1.chars().mapToObj(o -> (char)o).collect(Collectors.toList());
+        System.out.println("Character list is as follows : " + list4);
     }
 }
