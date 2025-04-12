@@ -35,7 +35,7 @@ public class kthSmallestElementInAMatrix {
         while(row >= 0 && col <= matrix[0].length - 1){
             if(matrix[row][col] <= midValue){
                 //means increment col to find elements less or equal to midValue
-                //also increase count these elements are <= midValue
+                //also increase count these elements are <= midValue since this array is sorted column wise so all elements vertically above are also to be included
                 count += row + 1;
                 col++;
             }
