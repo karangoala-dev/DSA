@@ -1,5 +1,7 @@
 package JavaBasics.Streams;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,13 +30,15 @@ public class Basic {
         //.collect(Collectors.toList()) → makes a List<Character>
         List<Character> list4 = string1.chars().mapToObj(o -> (char)o).map(o -> Character.toLowerCase(o)).collect(Collectors.toList());
         System.out.println("Character list is as follows : " + list4);
-        HashMap<Character, Integer> frequencyMap = new HashMap<>();
-        list4.stream().forEach(o -> {
-            int freq = frequencyMap.getOrDefault(o, 0);
-            frequencyMap.put(o, freq + 1);
-        });
-
-        for(Map.Entry<Character, Integer> entry: frequencyMap.entrySet()){
+        HashMap<Character, @NotNull Long> frequencyMap = string1.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(c -> c, HashMap::new, Collectors.counting()));
+//        list4.stream().forEach(o -> {
+//            int freq = frequencyMap.getOrDefault(o, 0);
+//            frequencyMap.put(o, freq + 1);
+//        });
+//
+        for(Map.Entry<Character, Long> entry: frequencyMap.entrySet()){
             System.out.println("Key : " + entry.getKey() + " value: " + entry.getValue());
         }
 
