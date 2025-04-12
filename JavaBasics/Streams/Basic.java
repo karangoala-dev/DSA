@@ -16,6 +16,9 @@ public class Basic {
         list2 = list2.stream().map(o -> o.toUpperCase()).toList();
         System.out.println("All in upper : " + list2);
 
-        //
+        //Filter and collect all strings starting with "A" from a list.
+        List<String> list3 = Arrays.asList("Abcde", "AdisAbaba", "Jakarta", "Japan", "charliE", "mAngo", "africa");
+        list3 = list3.stream().filter(o -> o.startsWith("A")).toList();
+        System.out.println("Only starts with A strings: " + list3);
     }
 }
