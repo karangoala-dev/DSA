@@ -39,21 +39,30 @@ public class BST_to_DLL {
             return new Result(dllNode, dllNode);
         }
 
+        DoublyListNode curr = new DoublyListNode(node.val);
+
         Result leftList = helper(node.left);
 
-        DoublyListNode curr = new DoublyListNode(node.val);
-        //connect left ka last to current node dll node.
-        leftList.last.next = curr;
-        curr.prev = leftList.last;
-        //set current node as last of left list
-        leftList.last = curr;
+        //if left list is null, set left list as having only current node as first and last;
+        if(leftList == null){
+            leftList = new Result(curr, curr);
+        }
+        else {
+            //connect left ka last to current node dll node.
+            leftList.last.next = curr;
+            curr.prev = leftList.last;
+            //set current node as last of left list
+            leftList.last = curr;
+        }
 
         Result rightList = helper(node.right);
-        //connect left list ka last to right list ka first
-        leftList.last.next = rightList.first;
-        rightList.first.prev = leftList.last;
-        //set last list ka last as right list ka last
-        leftList.last = rightList.last;
+        if(rightList != null){
+            //connect left list ka last to right list ka first
+            leftList.last.next = rightList.first;
+            rightList.first.prev = leftList.last;
+            //set last list ka last as right list ka last
+            leftList.last = rightList.last;
+        }
 
         //return the result left list
         return leftList;
