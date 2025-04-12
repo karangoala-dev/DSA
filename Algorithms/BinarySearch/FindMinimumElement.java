@@ -34,6 +34,12 @@ public class FindMinimumElement {
         return res;
     }
     public static void main(String[] args) {
+        FindMinimumElement solution = new FindMinimumElement();
+        System.out.println(solution.findMin(new int[]{3, 4, 5, 1, 2})); // 1
+        System.out.println(solution.findMin(new int[]{4, 5, 6, 7, 0, 1, 2})); // 0
+        System.out.println(solution.findMin(new int[]{11, 13, 15, 17})); // 11
+        System.out.println(solution.findMin(new int[]{2, 3, 4, 5, 1})); // 1
+        System.out.println(solution.findMin(new int[]{1})); // 1
 
     }
 }
