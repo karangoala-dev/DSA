@@ -37,5 +37,10 @@ public class Basic {
         for(Map.Entry<Character, Integer> entry: frequencyMap.entrySet()){
             System.out.println("Key : " + entry.getKey() + " value: " + entry.getValue());
         }
+
+        //find first non-repeated character in a string.
+        String string2 = "swiss"; //ans is w. not i (first non-repeated character)
+        List<Character> list5 = string2.chars().mapToObj(o -> (char)o).toList();
+
     }
 }
