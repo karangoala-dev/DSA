@@ -1,7 +1,7 @@
 package Algorithms.TwoPointers;
 
 public class TrappingRainwater {
-    public int trap(int[] height) {
+    public int trap_On_memory(int[] height) {
         int n = height.length;
         int[] left = new int[n];
         int[] right = new int[n];
@@ -18,6 +18,27 @@ public class TrappingRainwater {
             int currVolume = Math.min(left[i], right[i]) - height[i];
             if(currVolume > 0){
                 res += currVolume;
+            }
+        }
+        return res;
+    }
+    public int trap_Ok_memory(int[] height) {
+        int n = height.length;
+        int leftMax = height[0], rightMax = height[n - 1];
+        int l = 0, r = n - 1, res = 0;
+        while(l < r){
+            if(leftMax < rightMax){
+                //move the smaller pointer
+                l++;
+                //update max value of that side
+                leftMax = Math.max(leftMax, height[l]);
+                //add to result after updating the max value(this way no need to check if result is getting adding a -ve value)
+                res += leftMax - height[l];
+            }
+            else{
+                r--;
+                rightMax = Math.max(rightMax, height[r]);
+                res += rightMax - height[r];
             }
         }
         return res;
