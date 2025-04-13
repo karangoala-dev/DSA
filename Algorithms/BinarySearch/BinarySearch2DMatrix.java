@@ -34,6 +34,30 @@ public class BinarySearch2DMatrix {
     }
 
     //Approach #2: TC: O(log(n*m))
+    public boolean searchMatrix_optimised(int[][] matrix, int target) {
+        int n = matrix.length, m = matrix[0].length;
+        int l = 0, h = (n * m) - 1;
+        while(l <= h){
+            int mid = (l + (h - l) / 2);
+            //no times we can divide the mid with m(no of cols) will give us rows
+            //and remainder will give us the column
+            int row = mid / m, col = mid % m;
+
+            if(matrix[row][col] == target){
+                return true;
+            }
+
+            if(target < matrix[row][col]){
+                //go left
+                h = mid - 1;
+            }
+            else{
+                //go right
+                l = mid + 1;
+            }
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
 
