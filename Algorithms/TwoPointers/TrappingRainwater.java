@@ -26,13 +26,14 @@ public class TrappingRainwater {
         int n = height.length;
         int leftMax = height[0], rightMax = height[n - 1];
         int l = 0, r = n - 1, res = 0;
+        //l < r because we cant trap water at single bar
         while(l < r){
             if(leftMax < rightMax){
                 //move the smaller pointer
                 l++;
                 //update max value of that side
                 leftMax = Math.max(leftMax, height[l]);
-                //add to result after updating the max value(this way no need to check if result is getting adding a -ve value)
+                //We move to a new index, update the max seen till now on that side, and compute trapped water at that index.
                 res += leftMax - height[l];
             }
             else{
