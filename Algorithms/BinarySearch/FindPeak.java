@@ -14,7 +14,7 @@ public class FindPeak {
                 h = mid - 1;
             }
             else{
-                //go right
+                //else go right (no need to check if l is n-1 since l <= h always and we are always decrementing h)
                 l = mid + 1;
             }
         }
