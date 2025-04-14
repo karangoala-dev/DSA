@@ -1,24 +1,14 @@
 package Algorithms.BinarySearch;
 
 public class FindPeakInGrid {
-    public int findPeakElement(int[] nums) {
-        int n = nums.length, l = 0, h = nums.length - 1;
-        while(l <= h){
-            int mid = (l + (h - l) / 2);
-            if((mid == 0 || nums[mid] > nums[mid - 1])&&(mid == n - 1 || nums[mid] > nums[mid + 1])){
-                return mid;
-            }
-
-            if(mid != 0 && nums[mid] < nums[mid - 1]){
-                //go left
-                h = mid - 1;
-            }
-            else{
-                //else go right (no need to check if l is n-1 since l <= h always and we are always decrementing h)
-                l = mid + 1;
+    public int findMaxElement(int[] nums) {
+        int maxInd = 0;
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] > nums[maxInd]){
+                maxInd = i;
             }
         }
-        return -1;
+        return maxInd;
     }
 
     public int[] findPeakGrid(int[][] mat) {
@@ -28,8 +18,8 @@ public class FindPeakInGrid {
         int[] col = {-1, 0, 1, 0};
         while(l <= h){
             int mid = (l + (h-l)/2);
-            int peakCol = findPeakElement(mat[mid]);
-            //check if this peak is valid
+            int peakCol = findMaxElement(mat[mid]);
+            //check if this max is valid
             boolean res = true;
             System.out.println(mat[mid][peakCol]);
             for(int i = 0; i < 4; i++){
