@@ -23,29 +23,36 @@ public class KokoEatingBananas {
 //        return 0;
 //    }
     //Efficient approach, TC is O(n(log(max(n))))
-    public int minEatingSpeed(int[] piles, int h) {
-        int maxPiles = Integer.MIN_VALUE;
-        for (int pile : piles) {
-            maxPiles = Math.max(maxPiles, pile);
+    public int findMax(int[] arr){
+        int res = Integer.MAX_VALUE;
+        for(int i: arr){
+            res = Math.max(res, i);
         }
-
-        //     }
-        int l = 1, r = maxPiles, res = maxPiles;
-        while(l <= r){
-            int mid = ((r - l) / 2) + l;
-            int time = 0;
-            for(int j = 0; j < piles.length; j++){
-                time += (int) Math.ceil((double) piles[j] / mid);
-                if(time > h){
-                    // Time taken is large so need to increase speed so go to right
-                    l = mid + 1;
-                    break;
-                }
+        return res;
+    }
+    public int getTimeTaken(int[] piles, int k){
+        int res = 0;
+        for(int i = 0; i < piles.length; i++){
+            res += Math.ceil((double) piles[i] / k);
+        }
+        return res;
+    }
+    public int minEatingSpeed(int[] piles, int hrs) {
+        int l = 0, h = findMax(piles);
+        int res = Integer.MAX_VALUE;
+        while(l <= h){
+            int mid = (l + (h - l) / 2);
+            //find resultant time for this value of k
+            int timeTaken = getTimeTaken(piles, mid);
+            if(timeTaken > hrs){
+                //not acceptable, need to increase k
+                //go right
+                l = mid + 1;
             }
-            if(time <= h){
-                //Time taken is less but need to know most efficient rate, so need to check left still.
+            else{
+                //acceptable, but need to find most optimal, so go left
                 res = Math.min(res, mid);
-                r = mid - 1;
+                h = mid - 1;
             }
         }
         return res;
