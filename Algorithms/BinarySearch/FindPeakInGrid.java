@@ -13,6 +13,9 @@ public class FindPeakInGrid {
 
     public int[] findPeakGrid(int[][] mat) {
         int n = mat.length, m = mat[0].length;
+        //we are doing binary search row wise[O(logn)]. and for each midRow, we are finding the LARGEST elememnt(not peak)[O(m)]
+        //for each max element, we are checking if it is peak in O(4K)
+        //Total time complexity is O(m * Log n)
         int l = 0, h = n - 1;
         int[] row = {0, -1, 0, 1};
         int[] col = {-1, 0, 1, 0};
