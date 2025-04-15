@@ -7,6 +7,7 @@ public class kthSmallestElementInAMatrix_Djikstra {
     public int kthSmallest(int[][] matrix, int k) {
         int n = matrix.length, m = matrix[0].length;
         int[][] visited = new int[n][m];
+        //int[] = {value, row, col}
         PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
         visited[0][0] = 1;
         minHeap.add(new int[]{matrix[0][0], 0, 0});
