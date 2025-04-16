@@ -22,12 +22,14 @@ public class LetterCasePermutation {
             //upperCase
             sb.append(Character.toUpperCase(s.charAt(ind)));
             helper(s, ind + 1, sb);
+            //delete is needed to remove the character from sb
             sb.deleteCharAt(sb.length() - 1);
         }
         else{
             //no upper case lower case, plain recursion with backtracking
             sb.append(s.charAt(ind));
             helper(s, ind + 1, sb);
+            //delete is needed to remove the number from sb
             sb.deleteCharAt(sb.length() - 1);
         }
     }
