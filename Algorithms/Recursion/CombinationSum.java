@@ -4,26 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CombinationSum {
-    public void helper(int[] nums, int t, int i, List<List<Integer>> res, List<Integer> c){
-        if(i >= nums.length){
+    List<List<Integer>> res = new ArrayList<>();
+    public void helper(int[] candidates, List<Integer> curr, int currSum, int target, int ind){
+        if(currSum > target){
             return;
         }
-        if(t == 0){
-            res.add(new ArrayList<>(c));
+        if(ind == candidates.length){
+            if(currSum == target){
+                res.add(new ArrayList<>(curr));
+            }
             return;
         }
-        if(t < 0){
-            return;
-        }
-        c.add(nums[i]);
-        helper(nums, t - nums[i], i, res, c);
-        c.remove(c.size() - 1);
-        helper(nums, t, i + 1, res, c);
+
+
+        //at each point we have choice to take this index element(no ind + 1 done here so that same index can be considered again)
+        curr.add(candidates[ind]);
+        helper(candidates, curr, currSum + candidates[ind], target, ind);
+
+        //or skip it(ind + 1)
+        curr.remove(curr.size() - 1);
+        helper(candidates, curr, currSum, target, ind + 1);
     }
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> res = new ArrayList<>();
-        List<Integer> c = new ArrayList<>();
-        helper(candidates, target, 0, res, c);
+        helper(candidates, new ArrayList<>(), 0, target, 0);
         return res;
     }
 
