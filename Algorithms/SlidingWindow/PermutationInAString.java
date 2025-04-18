@@ -46,7 +46,7 @@ public class PermutationInAString {
 
     //small optimisation on above approach
     //TC O(n)
-
+    //something wrong, check later, any ways not too much of optimisation
     public boolean checkInclusion_optimised(String s1, String s2) {
         int[] mapS1 = new int[26];
         int[] mapS2 = new int[26];
@@ -58,11 +58,11 @@ public class PermutationInAString {
         }
         //generate map for s1
         for(int i = 0; i < s1.length(); i++){
-            s1Map[s1.charAt(i) - 'a']++;
+            mapS1[s1.charAt(i) - 'a']++;
         }
         //generate map for intial window
         for(int i = 0; i < s1.length(); i++){
-            s2Map[s2.charAt(i) - 'a']++;
+            mapS2[s2.charAt(i) - 'a']++;
         }
 
         //now count no of matches initially
@@ -73,10 +73,31 @@ public class PermutationInAString {
         }
 
         //r = right index
-        for(int r = s1.length() - 1; r < s2.length(); r++){
-            //left index of the window
+        int r = s1.length();
+        while(r < s2.length()){
+            if(matches == 26){
+                return true;
+            }
             int l = r - s1.length();
+            int indexOut = s2.charAt(l) - 'a';
+            int indexIn = s2.charAt(r) - 'a';
+
+            //if left index was a match, decrement match count
+            if(mapS1[indexOut] == mapS2[indexOut]){
+                matches--;
+            }
+            //remove from map
+            mapS2[indexOut]--;
+            if(mapS1[indexOut] == mapS2[indexOut]){
+                matches++;
+            }
+
+            //now same for right
+            if (mapS1[indexIn] == mapS2[indexIn]) matches--;
+            mapS2[indexIn]++;
+            if (mapS1[indexIn] == mapS2[indexIn]) matches++;
         }
+        return false;
     }
 
     public static void main(String[] args) {
