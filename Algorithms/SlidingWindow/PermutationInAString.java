@@ -14,6 +14,7 @@ public class PermutationInAString {
         return true;
     }
 
+    //TC : O(26 * n)
     public boolean checkInclusion(String s1, String s2) {
         if(s1.length() > s2.length()){
             return false;
@@ -41,6 +42,43 @@ public class PermutationInAString {
         }
         return false;
     }
+
+
+    //small optimisation on above approach
+    //TC O(n)
+
+    public boolean checkInclusion_optimised(String s1, String s2) {
+        int[] mapS1 = new int[26];
+        int[] mapS2 = new int[26];
+        //this variable keeps track of no of matches
+        int matches = 0;
+
+        if(s1.length() > s2.length()){
+            return false;
+        }
+        //generate map for s1
+        for(int i = 0; i < s1.length(); i++){
+            s1Map[s1.charAt(i) - 'a']++;
+        }
+        //generate map for intial window
+        for(int i = 0; i < s1.length(); i++){
+            s2Map[s2.charAt(i) - 'a']++;
+        }
+
+        //now count no of matches initially
+        for(int i = 0; i < 26; i++){
+            if(mapS1[i] == mapS2[i]){
+                matches++;
+            }
+        }
+
+        //r = right index
+        for(int r = s1.length() - 1; r < s2.length(); r++){
+            //left index of the window
+            int l = r - s1.length();
+        }
+    }
+
     public static void main(String[] args) {
 
     }
