@@ -1,4 +1,4 @@
-package Algorithms.Recursion;
+package Algorithms.RecursionAndBacktracking;
 
 public class PrintAllSubsequences {
     public static void generateSubsequences(String str, int index, StringBuilder sb){

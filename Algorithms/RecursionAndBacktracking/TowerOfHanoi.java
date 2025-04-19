@@ -1,4 +1,4 @@
-package Algorithms.Recursion;
+package Algorithms.RecursionAndBacktracking;
 
 public class TowerOfHanoi {
     static int steps = 0;

@@ -1,4 +1,4 @@
-package Algorithms.Recursion;
+package Algorithms.RecursionAndBacktracking;
 
 public class BasicPowerOfANumber {
     public double myPow(double x, int n) {

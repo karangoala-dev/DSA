@@ -1,4 +1,4 @@
-package Algorithms.Recursion;
+package Algorithms.RecursionAndBacktracking;
 
 public class NegativePower {
     public double helper(double x, long n){

@@ -1,4 +1,4 @@
-package Algorithms.Recursion;
+package Algorithms.RecursionAndBacktracking;
 
 public class VImpGoodNumbers {
     private long MOD = 1_000_000_007;
