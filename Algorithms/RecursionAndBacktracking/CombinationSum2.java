@@ -25,11 +25,17 @@ public class CombinationSum2 {
         //Take current element and move ahead
         currList.add(candidates[ind]);
         helper(candidates, target, currList, ind + 1, currSum + candidates[ind]);
+
+
         //Don't take current element and move ahead
         currList.remove(currList.size() - 1);
 
-        //before moving to next element we must skip duplicate elements as we have considered that value(candidates[ind])
-        //in prev call
+        // Before moving to the next element, we must skip duplicate elements
+        // because we have already considered that value (candidates[ind]) in the previous call.
+        //
+        // For example, for input [2,1,2,2,5], if we take 2 once, it will generate all valid combinations
+        // with that 2. If we don't skip the next same-valued 2, it will result in duplicate combinations.
+        // That's why we skip all further duplicates at this point, after the "not take" branch.
         while(ind < candidates.length - 1 && candidates[ind] == candidates[ind + 1]){
             ind++;
         }
