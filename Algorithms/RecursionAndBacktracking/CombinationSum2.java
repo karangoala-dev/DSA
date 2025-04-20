@@ -40,9 +40,9 @@ public class CombinationSum2 {
         CombinationSum2 solution = new CombinationSum2();
 
         // Test cases
-        int[] nums1 = {2, 3, 6, 7};
-        int target1 = 7;
-        System.out.println("Combinations for target 7: " + solution.combinationSum2(nums1, target1));
+        int[] nums1 = {2, 5, 2, 1, 2};
+        int target1 = 5;
+        System.out.println("Combinations for target 5: " + solution.combinationSum2(nums1, target1));
 
         int[] nums2 = {2, 3, 5};
         int target2 = 8;
