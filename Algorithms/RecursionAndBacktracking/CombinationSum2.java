@@ -5,35 +5,39 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CombinationSum2 {
-    public void helper(int[] nums, int t, int i, List<List<Integer>> res, List<Integer> c){
-        if(t == 0){
-            res.add(new ArrayList<>(c));
-            return;
+    List<List<Integer>> res = new ArrayList<>();
+    public void helper(int[] candidates, int target, List<Integer> currList, int ind, int currSum){
+        //Base cases
+        //it is important to notice the order of base cases in this qn.
+        //for case when last value in candidates is equal to target, then if the ind >= candidates.length is checked first then we wont be considering the ans and directly
+        //return without adding it to res.
+        //so check the current sum first and then index check
+        if(currSum >= target){
+            if(currSum == target){
+                res.add(new ArrayList<>(currList));
+            }
+            return ;
         }
-        if(i >= nums.length || t < 0){
-            return;
-        }
-
-        // Include the current element
-        c.add(nums[i]);
-        helper(nums, t - nums[i], i + 1, res, c);
-        c.remove(c.size() - 1); // Backtrack
-
-        // Skip duplicates
-        while (i + 1 < nums.length && nums[i] == nums[i + 1]) {
-            i++;
+        if(ind >= candidates.length){
+            return ;
         }
 
-        // Exclude the current element
-        helper(nums, t, i + 1, res, c);
+        //Take current element and move ahead
+        currList.add(candidates[ind]);
+        helper(candidates, target, currList, ind + 1, currSum + candidates[ind]);
+        //Don't take current element and move ahead
+        currList.remove(currList.size() - 1);
 
+        //before moving to next element we must skip duplicate elements as we have considered that value(candidates[ind])
+        //in prev call
+        while(ind < candidates.length - 1 && candidates[ind] == candidates[ind + 1]){
+            ind++;
+        }
+        helper(candidates, target, currList, ind + 1, currSum);
     }
-
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        List<List<Integer>> res = new ArrayList<>();
-        List<Integer> c = new ArrayList<>();
         Arrays.sort(candidates);
-        helper(candidates, target, 0, res, c);
+        helper(candidates, target, new ArrayList<>(), 0, 0);
         return res;
     }
     public static void main(String[] args) {
@@ -43,13 +47,5 @@ public class CombinationSum2 {
         int[] nums1 = {2, 5, 2, 1, 2};
         int target1 = 5;
         System.out.println("Combinations for target 5: " + solution.combinationSum2(nums1, target1));
-
-        int[] nums2 = {2, 3, 5};
-        int target2 = 8;
-        System.out.println("Combinations for target 8: " + solution.combinationSum2(nums2, target2));
-
-        int[] nums3 = {2};
-        int target3 = 1;
-        System.out.println("Combinations for target 1: " + solution.combinationSum2(nums3, target3));
     }
 }

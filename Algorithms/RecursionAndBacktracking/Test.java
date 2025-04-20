@@ -6,13 +6,14 @@ public class Test {
     List<List<Integer>> res = new ArrayList<>();
     public void helper(int[] candidates, int target, List<Integer> currList, int ind, int currSum){
         //Base cases
-        if(ind >= candidates.length){
-            return ;
-        }
         if(currSum >= target){
             if(currSum == target){
                 res.add(new ArrayList<>(currList));
             }
+            return ;
+        }
+
+        if(ind >= candidates.length){
             return ;
         }
 
@@ -38,16 +39,8 @@ public class Test {
         Test test = new Test();
 
         // Test cases
-        int[] nums1 = {2, 5, 2, 1, 2};
-        int target1 = 5;
-        System.out.println("Combinations for target 5: " + test.combinationSum2(nums1, target1));
-
-        int[] nums2 = {2, 3, 5};
-        int target2 = 8;
-        System.out.println("Combinations for target 8: " + test.combinationSum2(nums2, target2));
-
-        int[] nums3 = {2};
-        int target3 = 1;
-        System.out.println("Combinations for target 1: " + test.combinationSum2(nums3, target3));
+        int[] nums1 = {2, 1};
+        int target1 = 2;
+        System.out.println("Combinations for target 2: " + test.combinationSum2(nums1, target1));
     }
 }
