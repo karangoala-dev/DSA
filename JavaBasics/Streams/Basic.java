@@ -30,7 +30,7 @@ public class Basic {
         //.collect(Collectors.toList()) → makes a List<Character>
         List<Character> list4 = string1.chars().mapToObj(o -> (char)o).map(o -> Character.toLowerCase(o)).collect(Collectors.toList());
         System.out.println("Character list is as follows : " + list4);
-        HashMap<Character, @NotNull Long> frequencyMap = string1.chars()
+        HashMap<Character, Long> frequencyMap = string1.chars()
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.groupingBy(c -> c, HashMap::new, Collectors.counting()));
 //        list4.stream().forEach(o -> {
