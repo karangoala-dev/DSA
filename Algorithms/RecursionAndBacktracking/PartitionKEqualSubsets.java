@@ -28,7 +28,8 @@ public class PartitionKEqualSubsets {
         }
         return false;
     }
-    public boolean canPartitionKSubsets(int[] nums, int k) {
+    //TC(O(k^n)), gives TLE
+    public boolean canPartitionKSubsets_O_k_pow_n(int[] nums, int k) {
         int sum = 0;
         for(int i: nums){
             sum += i;
