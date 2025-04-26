@@ -111,7 +111,7 @@ public class PartitionKEqualSubsets {
         }
 
         //2-> start from ind and not 0, as we have already visited 0 -> ind - 1 in previous call
-        for(int i = 0; i < nums.length; i++){
+        for(int i = ind; i < nums.length; i++){
             if(visited[i] || subsetSum + nums[i] > target){
                 continue;
             }
