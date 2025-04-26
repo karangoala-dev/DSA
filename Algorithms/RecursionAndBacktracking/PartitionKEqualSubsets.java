@@ -1,6 +1,11 @@
 package Algorithms.RecursionAndBacktracking;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class PartitionKEqualSubsets {
+    //Un-optimised approach
     public boolean helper(int[] nums, int ind, int[] subsetSums, int target){
         if(ind == nums.length){
             for(int sum: subsetSums){
@@ -39,10 +44,64 @@ public class PartitionKEqualSubsets {
         }
         int target = sum / k;
         int[] subsetSums = new int[k];
+
+        //sort nums in descending order to quickly remove larger elements
+        Arrays.sort(nums);
+        for(int i = 0, j = nums.length - 1; i < j; i++, j--) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
+
         return helper(nums, 0, subsetSums, target);
     }
+
+    //Optimised approach O(k * 2^n), even this gives TLE
+    public boolean backtrack(int[] nums, int k, int ind, int subsetSum, int[] visited, int target){
+        if(k == 0){
+            //means, all subsets generated
+            return true;
+        }
+        if(subsetSum == target){
+            //now check for other subsets after decrementing k by one
+            return backtrack(nums, k - 1, 0, 0, visited, target);
+        }
+
+        for(int i = 0; i < nums.length; i++){
+            if(visited[i] == 1 || subsetSum + nums[i] > target){
+                continue;
+            }
+
+            visited[i] = 1;
+            if(backtrack(nums, k, i + 1, subsetSum + nums[i], visited, target)){
+                return true;
+            }
+            visited[i] = 0;
+        }
+        return false;
+    }
+    public boolean canPartitionKSubsets_TLE(int[] nums, int k) {
+        int sum = 0;
+        for(int i: nums){
+            sum += i;
+        }
+        if(sum % k != 0){
+            return false;
+        }
+        //sort nums in descending order to quickly remove larger elements
+        Arrays.sort(nums);
+        for(int i = 0, j = nums.length - 1; i < j; i++, j--) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
+        int target = sum / k;
+        int[] visited = new int[nums.length];
+        return backtrack(nums, k, 0, 0, visited, target);
+    }
+
     public static void main(String[] args) {
         PartitionKEqualSubsets solution = new PartitionKEqualSubsets();
-        System.out.println(solution.canPartitionKSubsets(new int[]{4,3,2,3,5,2,1}, 4));
+        System.out.println(solution.canPartitionKSubsets_O_k_pow_n(new int[]{4,3,2,3,5,2,1}, 4));
     }
 }
