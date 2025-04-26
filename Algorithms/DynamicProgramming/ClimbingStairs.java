@@ -1,6 +1,6 @@
 package Algorithms.DynamicProgramming;
 
-public class climbingStairs {
+public class ClimbingStairs {
     int[] dp;
     public int helper(int n){
         if(dp[n] != 0){
