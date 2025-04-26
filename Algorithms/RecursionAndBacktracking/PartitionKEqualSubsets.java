@@ -98,6 +98,8 @@ public class PartitionKEqualSubsets {
     //1-> sort nums in reverse order(imp optimisation)
     //2-> start from ind and not 0, as we have already visited 0 -> ind - 1 in previous call(most important optimization)
     //3-> use a boolean array instead of int[] as it is faster slightly
+    //4-> once one way fails at the start of a subset(if subsetSum == 0 after backtracking, then no need to go further), we don’t try the rest — we break.(dk why it works)
+    //5-> skip duplicate values in the sorted array nums to avoid redundant work.(dk why it works)
     public boolean backtrack(int[] nums, int k, int ind, int subsetSum, boolean[] visited, int target){
         if(k == 0){
             //means, all subsets generated
@@ -119,11 +121,11 @@ public class PartitionKEqualSubsets {
                 return true;
             }
             visited[i] = false;
-
+            //4-> once one way fails at the start of a subset(if subsetSum == 0 after backtracking, then no need to go further), we don’t try the rest — we break.
             if (subsetSum == 0) {
                 break;
             }
-
+            //5-> skip duplicate values in the sorted array nums to avoid redundant work.
             while (i + 1 < nums.length && nums[i] == nums[i + 1]) {
                 i++;
             }
