@@ -88,7 +88,58 @@ public class PartitionKEqualSubsets {
         if(sum % k != 0){
             return false;
         }
-        //sort nums in descending order to quickly remove larger elements
+        int target = sum / k;
+        int[] visited = new int[nums.length];
+        return backtrack(nums, k, 0, 0, visited, target);
+    }
+
+    //Working approach, not TLE for this
+    //5 optimisations on above approach
+    //1-> sort nums in reverse order(imp optimisation)
+    //2-> start from ind and not 0, as we have already visited 0 -> ind - 1 in previous call(most important optimization)
+    //3-> use a boolean array instead of int[] as it is faster slightly
+    public boolean backtrack(int[] nums, int k, int ind, int subsetSum, boolean[] visited, int target){
+        if(k == 0){
+            //means, all subsets generated
+            return true;
+        }
+        if(subsetSum == target){
+            //now check for other subsets after decrementing k by one
+            return backtrack(nums, k - 1, 0, 0, visited, target);
+        }
+
+        //2-> start from ind and not 0, as we have already visited 0 -> ind - 1 in previous call
+        for(int i = 0; i < nums.length; i++){
+            if(visited[i] || subsetSum + nums[i] > target){
+                continue;
+            }
+
+            visited[i] = true;
+            if(backtrack(nums, k, i + 1, subsetSum + nums[i], visited, target)){
+                return true;
+            }
+            visited[i] = false;
+
+            if (subsetSum == 0) {
+                break;
+            }
+
+            while (i + 1 < nums.length && nums[i] == nums[i + 1]) {
+                i++;
+            }
+        }
+        return false;
+    }
+    public boolean canPartitionKSubsets(int[] nums, int k) {
+        int sum = 0;
+        for(int i: nums){
+            sum += i;
+        }
+        if(sum % k != 0){
+            return false;
+        }
+
+        //1-> sort nums in descending order to quickly remove larger elements
         Arrays.sort(nums);
         for(int i = 0, j = nums.length - 1; i < j; i++, j--) {
             int temp = nums[i];
@@ -96,7 +147,9 @@ public class PartitionKEqualSubsets {
             nums[j] = temp;
         }
         int target = sum / k;
-        int[] visited = new int[nums.length];
+
+        //3-> use a boolean array instead of int[] as it is faster slightly
+        boolean[] visited = new boolean[nums.length];
         return backtrack(nums, k, 0, 0, visited, target);
     }
 
