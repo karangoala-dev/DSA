@@ -42,6 +42,9 @@ public class LongestIncreasingSubsequence {
         //2. col means index of previous value in nums array(it could've been prev value, but that would have large no of unused space), + 1 is done to store initial -1 col
         //dp[ind][prevInd + 1] = The maximum subsequence length you can achieve starting at index ind, given that your last taken number was at prevInd.The maximum subsequence length
         // you can achieve starting at index ind, given that your last taken number was at prevInd.
+
+        //at current position(ind), res = dp[ind][previous value]
+        //Therefore, res(ind) = dp[ind][prevInd + 1];
         dp = new int[nums.length][nums.length + 1];
         for(int[] curr: dp){
             Arrays.fill(curr, -1);
