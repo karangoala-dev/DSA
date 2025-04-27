@@ -13,11 +13,13 @@ public class MaxAlternatingSubsequenceSum {
         //memoization
         if(add){
             if(dp[ind][0] != -1){
+                //get result for add col in dp array
                 return dp[ind][0];
             }
         }
         else{
             if(dp[ind][1] != -1){
+                //get result for sub col in dp array
                 return dp[ind][1];
             }
         }
