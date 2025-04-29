@@ -2,7 +2,7 @@ package Algorithms.DynamicProgramming;
 
 import java.util.*;
 
-public class editDistance {
+public class EditDistance {
     int[][] dp;
     public int helper(String word1, String word2, int p1, int p2){
         if(p1 == word1.length() || p2 == word2.length()){

@@ -20,10 +20,12 @@ public class EditDistance {
             return helper(word1, word2, p1 + 1, p2 + 1);
         }
         else {
-            //insert a char in word1, which will be same as p2, so advance
+            //here we are conceptually doing the 3 operations, not modifying the strings for real.
+            //insert a char in word1, which will be same as p2, so advance only p2(because, after inserting character in s1 before the p1 conceptually, p1 is now pointing
+            // to next position automatically, so compare next p2 and current p1)
             int res1 = 1 + helper(word1, word2, p1, p2 + 1);
 
-            //delete char at p1, so do p1+1
+            //delete char at p1, so do p1+1 so that we can compare next p1 with current p2
             int res2 = 1 + helper(word1, word2, p1 + 1, p2);
 
             //replace char so advance both p1 and p2
