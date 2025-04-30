@@ -3,14 +3,14 @@ package Algorithms.DynamicProgramming;
 import java.util.*;
 
 public class DistinctSubsequences {
+    //IMPORTANT ******
+    //in this qn, no need to actually pass stringbuilder and keep track of current string
     int[][] dp;
-    public int helper(String s, String t, int p1, int p2, StringBuilder curr){
+    public int helper(String s, String t, int p1, int p2){
         if (p2 == t.length()){
-            //if we reach end of p2, means all correct so far, so return 1 as we found a match
             return 1;
         }
         if (p1 == s.length()){
-            //if we reach end of p1, means we cant go ahead, so return 0;
             return 0;
         }
 
@@ -20,19 +20,21 @@ public class DistinctSubsequences {
 
         if(s.charAt(p1) == t.charAt(p2)){
             //if equal, then add to curr and move ahead
-            curr.append(s.charAt(p1));
-            int res1 = helper(s, t, p1 + 1, p2 + 1, curr);
-
             //or, skip this character and search for other matches
+
+            //curr was a stringbuilder, it is not required actually
+            // curr.append(s.charAt(p1));
+            int res1 = helper(s, t, p1 + 1, p2 + 1);
+
             //backtrack and call
-            curr.deleteCharAt(curr.length() - 1);
-            int res2 = helper(s, t, p1 + 1, p2, curr);
+            // curr.deleteCharAt(curr.length() - 1);
+            int res2 = helper(s, t, p1 + 1, p2);
 
             return dp[p1][p2] = res1 + res2;
         }
         else{
-            //if not equal, we need to move p1 only
-            return dp[p1][p2] = helper(s, t, p1 + 1, p2, curr);
+            //if not equal, we need to move p1
+            return dp[p1][p2] = helper(s, t, p1 + 1, p2);
         }
     }
     public int numDistinct(String s, String t) {
@@ -40,7 +42,7 @@ public class DistinctSubsequences {
         for(int[] curr: dp){
             Arrays.fill(curr, -1);
         }
-        return helper(s, t, 0, 0, new StringBuilder());
+        return helper(s, t, 0, 0);
     }
     public static void main(String[] args) {
 
