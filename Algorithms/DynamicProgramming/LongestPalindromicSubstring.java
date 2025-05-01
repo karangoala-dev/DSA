@@ -4,15 +4,20 @@ import java.util.HashMap;
 
 public class LongestPalindromicSubstring {
     HashMap<String, String> dp;
+    Boolean[][] isPalMemo;
     public boolean isPalindrome(String s, int p1, int p2){
+        if (isPalMemo[p1][p2] != null){
+            return isPalMemo[p1][p2];
+        }
+
         while(p1 < p2){
             if(s.charAt(p1) != s.charAt(p2)){
-                return false;
+                return isPalMemo[p1][p2] = false;
             }
             p1++;
             p2--;
         }
-        return true;
+        return isPalMemo[p1][p2] = true;
     }
     public String helper(String s, int p1, int p2){
         if(p1 > p2){
@@ -52,6 +57,7 @@ public class LongestPalindromicSubstring {
     }
     public String longestPalindrome(String s) {
         dp = new HashMap<>();
+        isPalMemo = new Boolean[s.length()][s.length()];
         return helper(s, 0, s.length() - 1);
     }
     public static void main(String[] args) {
