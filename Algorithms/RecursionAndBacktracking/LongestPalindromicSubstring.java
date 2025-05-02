@@ -17,7 +17,7 @@ public class LongestPalindromicSubstring {
             return "";
         }
         if(p1 == p2){
-            //then return the character, single character palindrome
+            //then return the character, single character is a palindrome
             return s.substring(p1, p2 + 1);
         }
 

@@ -2,9 +2,11 @@ package Algorithms.DynamicProgramming;
 
 import java.util.HashMap;
 
-public class LongestPalindromicSubstring {
-    HashMap<String, String> dp;
+public class LongestPalindromicSubstringDPEnhanced {
+    HashMap<String, Integer> dp;
     Boolean[][] isPalMemo;
+    int startPointer = -1;
+    int maxLen = 0;
     public boolean isPalindrome(String s, int p1, int p2){
         if (isPalMemo[p1][p2] != null){
             return isPalMemo[p1][p2];
@@ -19,14 +21,19 @@ public class LongestPalindromicSubstring {
         }
         return isPalMemo[p1][p2] = true;
     }
-    public String helper(String s, int p1, int p2){
+    public int helper(String s, int p1, int p2){
         if(p1 > p2){
             //p1 cant be greater than p2
-            return "";
+            return 0;
         }
         if(p1 == p2){
             //then return the character, single character is a palindrome
-            return s.substring(p1, p2 + 1);
+            if(maxLen < 1){
+                maxLen = 1;
+                startPointer = p1;
+            }
+
+            return 1;
         }
 
         //check if key exists in dp map
@@ -37,16 +44,22 @@ public class LongestPalindromicSubstring {
 
         //if palindrome then return it
         if(isPalindrome(s, p1, p2)){
-            dp.put(key, s.substring(p1, p2 + 1));
-            return s.substring(p1, p2 + 1);
+            int currentLen = p2 - p1 + 1;
+            dp.put(key, currentLen);
+
+            if(currentLen > maxLen){
+                maxLen = currentLen;
+                startPointer = p1;
+            }
+            return p2 - p1 + 1;
         }
 
         //if not palindrome, check 2 cases, once with moving p1 inward and once with moving p2 inward
-        String res1 = helper(s, p1 + 1, p2);
-        String res2 = helper(s, p1, p2 - 1);
+        Integer res1 = helper(s, p1 + 1, p2);
+        Integer res2 = helper(s, p1, p2 - 1);
 
-        String res;
-        if(res1.length() > res2.length()){
+        Integer res;
+        if(res1 > res2){
             res = res1;
         }
         else{
@@ -56,9 +69,14 @@ public class LongestPalindromicSubstring {
         return res;
     }
     public String longestPalindrome(String s) {
+        if(s.length() <= 1){
+            return s;
+        }
         dp = new HashMap<>();
         isPalMemo = new Boolean[s.length()][s.length()];
-        return helper(s, 0, s.length() - 1);
+        int length = helper(s, 0, s.length() - 1);
+
+        return s.substring(startPointer, startPointer + maxLen);
     }
     public static void main(String[] args) {
 
