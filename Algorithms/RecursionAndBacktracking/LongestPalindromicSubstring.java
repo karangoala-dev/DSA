@@ -1,6 +1,7 @@
 package Algorithms.RecursionAndBacktracking;
 
 public class LongestPalindromicSubstring {
+    //Fails with TLE
     public boolean isPalindrome(String s, int p1, int p2){
         while(p1 < p2){
             if(s.charAt(p1) != s.charAt(p2)){

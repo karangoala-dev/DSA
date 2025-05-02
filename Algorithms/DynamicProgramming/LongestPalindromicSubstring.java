@@ -3,6 +3,7 @@ package Algorithms.DynamicProgramming;
 import java.util.HashMap;
 
 public class LongestPalindromicSubstring {
+    //Fails with TLE
     HashMap<String, String> dp;
     Boolean[][] isPalMemo;
     public boolean isPalindrome(String s, int p1, int p2){
