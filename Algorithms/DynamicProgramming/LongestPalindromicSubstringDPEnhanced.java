@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 public class LongestPalindromicSubstringDPEnhanced {
     //Even this fails for TLE
+    //For this qn, dp not required, can be done through plain recursion or Manacher's algorithm
     HashMap<String, Integer> dp;
     Boolean[][] isPalMemo;
     int startPointer = -1;
@@ -80,6 +81,7 @@ public class LongestPalindromicSubstringDPEnhanced {
         return s.substring(startPointer, startPointer + maxLen);
     }
     public static void main(String[] args) {
-
+        LongestPalindromicSubstringDPEnhanced longestPalindromicSubstringDPEnhanced = new LongestPalindromicSubstringDPEnhanced();
+        System.out.println(longestPalindromicSubstringDPEnhanced.longestPalindrome("\"cstgvkbrxacmpxdxxktktvpdzcuxmnhvuxdgsmskgeeawzeikhtmhdvnccbrgifpzmiuytfmeyfoxsntrdtxeuxcqsndexbgfxnthqwveujqzemloooyddparbjcuiwpopjwvvmwblsamkhjhlnoxinkpsempexmipifsfwzxbetgvfnkngzxcpizwctpdlpngjpyovmjllxfiwktghkxvyelwjwdztujmunijfsfdvmhgqhlpouewgyznphlmccjmqaqncwbeqheohibafqfunfywmrvqvjygjwqoclijwkcfiuaiymeagdbwyejnvtosxylptbtyoahfzfmwzrkhzdamknleroffmsqcaryibamgdpcumlhrblypddzhaxfeztokgogzgvpfvlmetiwsamhdidmvxavleryfyakendwrbslcavlqkerrnvpuzhdgwzuyorxzbkzhxhpbvkflgxouvaavxrdzsjlgrmogzvlhhdidldsxqhrqlryaanffhxnutcycnczuedtrwcnfiqrtoafvdfnfhxhyjivzalozrbrajboecfyalisxxanduzraqdrbzsbkobaieqpzcawrunxucypqyjnmrlrlivrrwwhdpekeelsphhunzbhkkejvqfopjsuholutgmtnleqdrntbqgrobnuhqpdkbjtikijkdiwqvnxgajaaqgswrdamzv\""));
     }
 }
