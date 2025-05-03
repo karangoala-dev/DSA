@@ -1,6 +1,23 @@
 package DataStructures.BinaryTrees;
 
 public class InvertBinaryTree {
+
+    //This approach is most optimised and in-place
+    public void helper_optimised(BinaryTreePaths.TreeNode node){
+        if(node == null){
+            return;
+        }
+
+        //swap left and right child
+        BinaryTreePaths.TreeNode dummy = node.left;
+        node.left = node.right;
+        node.right = dummy;
+
+        //recurse for each child now
+        helper_optimised(node.left);
+        helper_optimised(node.right);
+    }
+    //This approach uses O(N) space
     public void helper(Node a, Node b){
         if(a == null){
             return;
