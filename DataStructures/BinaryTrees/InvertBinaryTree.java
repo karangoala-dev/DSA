@@ -24,14 +24,17 @@ public class InvertBinaryTree {
         }
 
         if(a.left != null){
+            //if a has a left child then clone it(only the node, not children) and assign it to right of mirror
             Node left = new Node(a.left.val);
             b.right = left;
         }
         if(a.right != null){
+            //if a has a right child then clone it(only the node, not children) and assign it to left of mirror
             Node right = new Node(a.right.val);
             b.left = right;
         }
 
+        //recurse for the children nodes
         helper(a.left, b.right);
         helper(a.right, b.left);
     }
