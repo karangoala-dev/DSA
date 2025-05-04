@@ -23,7 +23,7 @@ public class PalindromePartitioning {
 
         for(int j = ind; j < s.length(); j++){
             if(isPalindrome(s, ind, j)){
-                //if we found a palindromic substring,(in java, s.substring(i,j) will give from i to j - 1, so do a "j + 1")
+                //if we found a palindromic substring at start, find rest,(in java, s.substring(i,j) will give from i to j - 1, so do a "j + 1")
                 partition.add(s.substring(ind, j + 1));
                 //recurse on the string, for other substrings which are palindromes, for "aab", first leg will gather result as [a,a,b], now at each level,backtracking step
                 helper(s, j + 1, res, partition);
