@@ -3,6 +3,14 @@ package Algorithms.DynamicProgramming;
 import java.util.*;
 
 public class OptimalBST_InefficientMemory {
+//    Here, we have level inside memoization key, so it is necessary to use in the dp also, else:
+//
+//    helper(i, j, level = 1) and
+//
+//    helper(i, j, level = 2)
+//
+//    will incorrectly reuse the same dp[i][j] result, even though the cost depends on level. This causes incorrect answers.
+
     static int[][][] dp;
     static int helper(int[] keys, int[] freq, int i, int j, int level){
         if(i > j){
