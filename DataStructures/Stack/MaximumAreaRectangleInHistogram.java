@@ -40,7 +40,7 @@ public class MaximumAreaRectangleInHistogram {
                 st_nse.pop();
             }
             if(st_nse.isEmpty()){
-                nse[_i] = new Pair(-1, -1);
+                nse[_i] = new Pair(-1, n);
             }
             else{
                 nse[_i] = st_nse.peek();
@@ -55,8 +55,8 @@ public class MaximumAreaRectangleInHistogram {
             Pair rBound = nse[i];
 
             //l means left boundary, r means right boundary, if l or r is -1, means current element has no smaller element on left/right
-            int l = lBound.ind == -1 ? -1 : lBound.ind;
-            int r = rBound.ind == -1 ? n : rBound.ind;
+            int l = lBound.ind;
+            int r = rBound.ind;
 
             int curr = heights[i] * (r - l - 1);
 
