@@ -4,15 +4,15 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class PartitionArrayForMaximumSum {
-    int[][] dp;
+    int[] dp;
     public int helper(int[] arr, int k, int i, int j){
         if(i > j){
             //is i exceeds j, return 0
             return 0;
         }
 
-        if(dp[i][j] != -1){
-            return dp[i][j];
+        if(dp[i] != -1){
+            return dp[i];
         }
 
         int res = Integer.MIN_VALUE;
@@ -31,13 +31,11 @@ public class PartitionArrayForMaximumSum {
             res = Math.max(res, curr);
         }
 
-        return dp[i][j] = res;
+        return dp[i] = res;
     }
     public int maxSumAfterPartitioning(int[] arr, int k) {
-        dp = new int[arr.length][arr.length];
-        for(int[] curr: dp){
-            Arrays.fill(curr, -1);
-        }
+        dp = new int[arr.length];
+        Arrays.fill(dp, -1);
         return helper(arr, k, 0, arr.length - 1);
     }
     public static void main(String[] args) {
