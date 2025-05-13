@@ -6,7 +6,7 @@ import java.util.List;
 public class SumOfSubarrayMinimums {
 
     //Brute force : TC: O(N^2)
-    public int sumSubarrayMins(int[] arr) {
+    public int sumSubarrayMins_BruteForce(int[] arr) {
         int sum = 0;
         int min = Integer.MAX_VALUE;
         for(int i = 0; i < arr.length; i++){
@@ -23,7 +23,7 @@ public class SumOfSubarrayMinimums {
 
     public static void main(String[] args) {
         SumOfSubarrayMinimums sumOfSubarrayMinimums = new SumOfSubarrayMinimums();
-        System.out.println(sumOfSubarrayMinimums.sumSubarrayMins(new int[]{3,1,2,4}));
+        System.out.println(sumOfSubarrayMinimums.sumSubarrayMins_BruteForce(new int[]{3,1,2,4}));
 
     }
 }
