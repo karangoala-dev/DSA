@@ -1,5 +1,7 @@
 package Algorithms.DynamicProgramming;
 
+import java.util.*;
+
 public class MinimumCostToMergeStones {
     int[] prefixSum;
     int[][] dp;
