@@ -1,7 +1,4 @@
-package Algorithms.DynamicProgramming;
-
-import java.util.ArrayList;
-import java.util.List;
+package DataStructures.Stack;
 
 public class SumOfSubarrayMinimums {
 
@@ -19,6 +16,11 @@ public class SumOfSubarrayMinimums {
             min = Integer.MAX_VALUE;
         }
         return sum;
+    }
+
+    //Optimised approach using monotonic stack
+    public int sumSubarrayMins(int[] arr) {
+
     }
 
     public static void main(String[] args) {
