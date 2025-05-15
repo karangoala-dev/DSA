@@ -2,7 +2,7 @@ package DataStructures.Stack;
 
 import java.util.Stack;
 
-public class InfixToPostfix {
+public class InfixToPrefix {
     public static int priority(Character c){
         if(c == '^')
             //highest priority
@@ -23,7 +23,7 @@ public class InfixToPostfix {
         for(int i = 0; i < eq.length(); i++){
             Character c = eq.charAt(i);
 
-        //if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')){
+            //if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')){
             if(Character.isLetterOrDigit(c)){
                 //if character, simply add to postfix expression
                 postfix.append(c);
@@ -42,9 +42,18 @@ public class InfixToPostfix {
             }
             else {
                 //we reach here means it is an operator
-                //if priority of current character is strictly smaller than stack top, only then push it to stack, else keep popping and adding to postfix
-                while (!st.isEmpty() && priority(st.peek()) >= priority(c)){
-                    postfix.append(st.pop());
+                //This bit is slightly different that what we did for infix to postfix
+                if(c == '^'){
+                    //basically we cant let two ^ be in the stack at same time
+                    while (!st.isEmpty() && priority(c) <= priority(st.peek())){
+                        postfix.append(st.pop());
+                    }
+                }
+                else {
+                    //if not ^ then pop out higher priority operators from stack and append
+                    while (!st.isEmpty() && priority(c) < priority(st.peek())){
+                        postfix.append(st.pop());
+                    }
                 }
                 st.push(c);
             }
@@ -57,7 +66,22 @@ public class InfixToPostfix {
         return postfix.toString();
     }
 
+    public static String infixToPrefix(String eq){
+        StringBuilder equation = new StringBuilder(eq).reverse();
+        for(int i = 0; i < equation.length(); i++){
+            if(equation.charAt(i) == '('){
+                equation.setCharAt(i, ')');
+            }
+            else if (equation.charAt(i) == ')') {
+                equation.setCharAt(i, '(');
+            }
+        }
+        eq = equation.toString();
+        String postfix = infixToPostfix(eq);
+        return new StringBuilder(postfix).reverse().toString();
+    }
+
     public static void main(String[] args) {
-        System.out.println(infixToPostfix("h^m^q^(7-4)\n"));
+        System.out.println(infixToPrefix("F+D-C*(B+A)"));
     }
 }
