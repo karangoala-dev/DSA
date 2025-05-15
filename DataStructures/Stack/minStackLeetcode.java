@@ -3,6 +3,14 @@ package DataStructures.Stack;
 import java.util.*;
 
 public class minStackLeetcode {
+//    When we get a new min value, we:
+//    -> Want to somehow "encode" the old min in stack itself.
+//    -> So that later, when we pop, we can recover the old min.
+
+    //Push: newVal = 2 * val - min → you push even lower than val.
+
+    //Pop: min = 2 * min - poppedVal → you pull min back up.
+
     Stack<Long> stack;
     long min;
     public minStackLeetcode() {
@@ -21,6 +29,7 @@ public class minStackLeetcode {
         }
         else{
             //modified element to be pushed
+            //push a "modified" value that is guaranteed to be less than val
             long newVal = 2L * val - min;
             stack.push(newVal);
             min = val;
