@@ -3,23 +3,24 @@ package Algorithms.TwoPointers;
 public class TrappingRainwater {
     public int trap_On_memory(int[] height) {
         int n = height.length;
-        int[] left = new int[n];
-        int[] right = new int[n];
-        left[0] = height[0];
-        right[n - 1] = height[n - 1];
-        //generate l and r arrays(max so far from left and right sides)
+        int[] prefixMax = new int[n];
+        prefixMax[0] = height[0];
+        int[] suffixMax = new int[n];
+        suffixMax[n - 1] = height[n - 1];
+
+        //Generate prefix max and suffix max arrays
         for(int i = 1; i < n; i++){
-            left[i] = Math.max(left[i - 1], height[i]);
-            right[n - 1 - i] = Math.max(right[n - i], height[n - 1 - i]);
+            int lIndex = i, rIndex = n - 1 - i;
+            prefixMax[lIndex] = Math.max(prefixMax[lIndex - 1], height[lIndex]);
+            suffixMax[rIndex] = Math.max(suffixMax[rIndex + 1], height[rIndex]);
         }
-        //now compute result
+
+        //iterate and compute volume for each
         int res = 0;
         for(int i = 0; i < n; i++){
-            int currVolume = Math.min(left[i], right[i]) - height[i];
-            if(currVolume > 0){
-                res += currVolume;
-            }
+            res += Math.min(prefixMax[i], suffixMax[i]) - height[i];
         }
+
         return res;
     }
     public int trap_Ok_memory(int[] height) {
