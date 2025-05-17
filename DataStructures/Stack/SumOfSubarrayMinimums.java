@@ -86,6 +86,29 @@ public class SumOfSubarrayMinimums {
         return res;
     }
 
+    public int sumSubarrayMins_Concise(int[] arr) {
+        Stack<Integer> stack = new Stack<>();
+        long res = 0;
+        int n = arr.length;
+
+        //n is added as a delimited to know when to process all elements, after we reached end
+        for(int right = 0; right <= n; right++){
+            while(!stack.isEmpty() && (right == n || arr[stack.peek()] >= arr[right])){
+                int mid = stack.pop();
+                int left = stack.isEmpty() ? -1 : stack.peek();
+                int leftCount = mid - left;
+                int rightCount = right - mid;
+                long contribution = ((long)arr[mid] * leftCount % 1_000_000_007) * rightCount % 1_000_000_007;
+                res = (res + contribution) % 1_000_000_007;
+            }
+            if(right < n){
+                stack.push(right);
+            }
+        }
+
+        return (int)res;
+    }
+
     public static void main(String[] args) {
         SumOfSubarrayMinimums sumOfSubarrayMinimums = new SumOfSubarrayMinimums();
         System.out.println(sumOfSubarrayMinimums.sumSubarrayMins(new int[]{11,81,3,43,3}));
