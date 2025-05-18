@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 
 public class SlidingWindowMaximum {
     //Priority queue approach
-    public int[] maxSlidingWindow(int[] nums, int k) {
+    public int[] maxSlidingWindow_pq(int[] nums, int k) {
         int n = nums.length;
         int[] res = new int[n - k + 1];
         int resPtr = 0;
