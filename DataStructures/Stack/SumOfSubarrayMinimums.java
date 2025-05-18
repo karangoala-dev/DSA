@@ -86,6 +86,7 @@ public class SumOfSubarrayMinimums {
         return res;
     }
 
+    //See this code, more concise than above and same TC
     public int sumSubarrayMins_Concise(int[] arr) {
         Stack<Integer> stack = new Stack<>();
         long res = 0;
