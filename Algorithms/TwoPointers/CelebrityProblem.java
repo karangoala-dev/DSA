@@ -1,6 +1,7 @@
-package DataStructures.Stack;
+package Algorithms.TwoPointers;
 
 public class CelebrityProblem {
+    //unoptimised
     public int celebrity_O_2n(int mat[][]) {
         int n = mat.length;
         int[] iKnow = new int[n];
@@ -20,6 +21,11 @@ public class CelebrityProblem {
             }
         }
         return -1;
+    }
+
+    //Optimised approach
+    public int celebrity(int mat[][]) {
+
     }
     public static void main(String[] args) {
 
