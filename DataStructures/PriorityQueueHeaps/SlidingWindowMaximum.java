@@ -1,6 +1,7 @@
 package DataStructures.PriorityQueueHeaps;
 
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 public class SlidingWindowMaximum {
     //Priority queue approach
@@ -29,6 +30,25 @@ public class SlidingWindowMaximum {
                 resPtr++;
             }
         }
+        return res;
+    }
+
+    //Plain stack based approach
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length;
+        int[] res = new int[n - k + 1];
+        int resPtr = 0;
+
+        //stack stores[value, index]
+        Stack<int[]> stack = new Stack<>();
+        for(int i = 0; i < n; i++){
+            stack.add(new int[]{nums[i], i});
+            if(i > k - 1){
+                //means window size is reached
+
+            }
+        }
+
         return res;
     }
     public static void main(String[] args) {
