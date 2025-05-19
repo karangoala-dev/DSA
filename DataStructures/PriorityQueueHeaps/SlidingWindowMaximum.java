@@ -12,9 +12,9 @@ public class SlidingWindowMaximum {
         //pq stores, [value, index]
         PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) -> o2[0] - o1[0]);
         for(int i = 0; i < n; i++){
-            //not reached window width
             pq.add(new int[]{nums[i], i});
             if(i >= k - 1){
+                //if window width is reached
                 int[] top = pq.peek();
                 //if top is within range of the current window
                 if(top[1] >= i+1-k){
