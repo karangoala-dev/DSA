@@ -21,21 +21,33 @@ class DLLNode{
 
 class DoublyLinkedList{
     int listSize;
-    DLLNode head;
-    DLLNode tail;
+    DLLNode dummyHead;
+    DLLNode dummyTail;
 
     DoublyLinkedList(){
         this.listSize = 0;
-        this.head = new DLLNode(-1, -1, null, null);
-        this.tail = new DLLNode(-1, -1, null, null);
+        this.dummyHead = new DLLNode(-1, -1, null, null);
+        this.dummyTail = new DLLNode(-1, -1, null, null);
 
-        head.next = tail;
-        tail.prev = head;
+        dummyHead.next = dummyTail;
+        dummyTail.prev = dummyHead;
     }
 
     public void removeNode(DLLNode node){
         DLLNode prev = node.prev;
         DLLNode next = node.next;
+
+        prev.next = next;
+        next.prev = prev;
+    }
+
+    public void insertAtStart(DLLNode node){
+        DLLNode next = dummyHead.next;
+        dummyHead.next = node;
+        node.prev = dummyHead;
+
+        node.next = next;
+        next.prev = node;
     }
 }
 
