@@ -36,7 +36,7 @@ class DoublyLinkedList{
     public void removeNode(DLLNode node){
         DLLNode prev = node.prev;
         DLLNode next = node.next;
-
+        this.listSize--;
         prev.next = next;
         next.prev = prev;
     }
@@ -45,7 +45,7 @@ class DoublyLinkedList{
         DLLNode next = dummyHead.next;
         dummyHead.next = node;
         node.prev = dummyHead;
-
+        this.listSize++;
         node.next = next;
         next.prev = node;
     }
@@ -58,7 +58,7 @@ public class LFUCache {
     DLLNode dummyHead;
     DLLNode dummyTail;
     HashMap<Integer, DLLNode> map;
-    HashMap<Integer, Queue<DLLNode>> freqMap;
+    HashMap<Integer, DoublyLinkedList> freqMap;
 
     public LFUCache(int capacity) {
         this.maxCapacity = capacity;
@@ -78,16 +78,33 @@ public class LFUCache {
             return -1;
         }
         DLLNode node = map.get(key);
-        node.freq += 1;
-
+        update(node);
+        return node.val;
     }
 
     public void put(int key, int value) {
 
     }
 
-    public void updateFrequency(){
+    //This fn must increase frequency for this node, and remove the node from the current freq DLL to next freq DLL, also, if after removal, no of elements is 0 then update
+    //minFrequency
+    public void update(DLLNode node){
+        int freq = node.freq;
+        node.freq += 1;
+        //get freq list and remove node from it
+        DoublyLinkedList freqList = freqMap.get(freq);
+        freqList.removeNode(node);
+        if(freq == minFrequency && freqList.listSize == 0){
+            //increment minFreq
+            minFrequency++;
+        }
 
+        //now add this node to new frequency list
+        DoublyLinkedList newFreqList = freqMap.getOrDefault(node.freq, new DoublyLinkedList());
+        newFreqList.insertAtStart(node);
+
+        //finally update the frequency map
+        freqMap.put(node.freq, newFreqList);
     }
 
     public static void main(String[] args) {
