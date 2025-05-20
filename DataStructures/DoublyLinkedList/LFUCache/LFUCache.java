@@ -53,6 +53,8 @@ class DoublyLinkedList{
 
 public class LFUCache {
     int maxCapacity;
+    int minFrequency;
+    int currSize;
     DLLNode dummyHead;
     DLLNode dummyTail;
     HashMap<Integer, DLLNode> map;
@@ -60,6 +62,8 @@ public class LFUCache {
 
     public LFUCache(int capacity) {
         this.maxCapacity = capacity;
+        this.currSize = 0;
+        this.minFrequency = 0;
         this.dummyHead = new DLLNode(-1, -1, null, null);
         this.dummyTail = new DLLNode(-1, -1, null, null);
         this.map = new HashMap<>();
@@ -79,6 +83,10 @@ public class LFUCache {
     }
 
     public void put(int key, int value) {
+
+    }
+
+    public void updateFrequency(){
 
     }
 
