@@ -55,8 +55,6 @@ public class LFUCache {
     int maxCapacity;
     int minFrequency;
     int currSize;
-    DLLNode dummyHead;
-    DLLNode dummyTail;
     HashMap<Integer, DLLNode> map;
     HashMap<Integer, DoublyLinkedList> freqMap;
 
@@ -64,13 +62,8 @@ public class LFUCache {
         this.maxCapacity = capacity;
         this.currSize = 0;
         this.minFrequency = 0;
-        this.dummyHead = new DLLNode(-1, -1, null, null);
-        this.dummyTail = new DLLNode(-1, -1, null, null);
         this.map = new HashMap<>();
         this.freqMap = new HashMap<>();
-
-        dummyHead.next = dummyTail;
-        dummyTail.prev = dummyHead;
     }
 
     public int get(int key) {
@@ -83,7 +76,19 @@ public class LFUCache {
     }
 
     public void put(int key, int value) {
+        if(map.containsKey(key)){
+            //if key exists, just update value and frequency
+            map.get(key).val = value;
+            update(map.get(key));
+        }
+        else {
+            //we need to add new node
+            //this also means new minFrequency will be 1
+            minFrequency = 1;
+            DLLNode node = new DLLNode(key, value, null, null);
+            map.put(key, node);
 
+        }
     }
 
     //This fn must increase frequency for this node, and remove the node from the current freq DLL to next freq DLL, also, if after removal, no of elements is 0 then update
