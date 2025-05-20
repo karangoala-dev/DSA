@@ -1,7 +1,6 @@
 package DataStructures.DoublyLinkedList.LFUCache;
 
 import java.util.HashMap;
-import java.util.Queue;
 
 class DLLNode{
     int key;
