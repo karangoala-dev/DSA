@@ -54,7 +54,9 @@ public class LFUCache {
     int maxCapacity;
     int minFrequency;
     int currSize;
+    //This maps the key to the node
     HashMap<Integer, DLLNode> map;
+    //This maps the frequency to the DLL so that we can find the least recently used node
     HashMap<Integer, DoublyLinkedList> freqMap;
 
     public LFUCache(int capacity) {
