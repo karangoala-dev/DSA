@@ -91,11 +91,11 @@ public class LFUCache {
             if(currSize > maxCapacity){
                 //remove the LRU node from the minFreq list and from map
                 DoublyLinkedList minFreqList = freqMap.get(minFrequency);
-                map.remove(minFreqList.dummyTail.prev.freq);
+                map.remove(minFreqList.dummyTail.prev.key);
                 minFreqList.removeNode(minFreqList.dummyTail.prev);
                 currSize--;
             }
-            //this also means new minFrequency will be 1
+            //this also means new minFrequency will be 1, since we are adding a new node
             minFrequency = 1;
             DLLNode node = new DLLNode(key, value, null, null);
             map.put(key, node);
@@ -108,13 +108,13 @@ public class LFUCache {
     //This fn must increase frequency for this node, and remove the node from the current freq DLL to next freq DLL, also, if after removal, no of elements is 0 then update
     //minFrequency
     public void update(DLLNode node){
-        int freq = node.freq;
+        int prevFreq = node.freq;
         //get freq list and remove node from it
-        DoublyLinkedList freqList = freqMap.get(freq);
+        DoublyLinkedList freqList = freqMap.get(prevFreq);
         freqList.removeNode(node);
 
-        node.freq += 1;
-        if(freq == minFrequency && freqList.listSize == 0){
+        node.freq = node.freq + 1;
+        if(prevFreq == minFrequency && freqList.listSize == 0){
             //increment minFreq
             minFrequency++;
         }
