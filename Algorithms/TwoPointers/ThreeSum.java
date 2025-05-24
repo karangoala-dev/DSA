@@ -6,31 +6,40 @@ import java.util.List;
 
 public class ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
+        int n = nums.length;
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
-        int n = nums.length;
         for(int i = 0; i < n; i++){
-            //ignore current index if previous value was same as current
+            //skip dupes
             if(i > 0 && nums[i] == nums[i - 1]){
                 continue;
             }
-            int l = i + 1;
-            int r = n - 1;
-            int threeSum;
+
+            int target = nums[i] * -1;
+            //since array is sorted, we can do 2 pointer approach
+            int l = i + 1, r = n - 1;
             while(l < r){
-                threeSum = nums[i] + nums[l] + nums[r];
-                if(threeSum > 0){
+                int sum = nums[l] + nums[r];
+                if(sum < target){
+                    //increase by moving left
+                    l++;
+                }
+                else if(sum > target){
+                    //decrese by moving right
                     r--;
                 }
-                else if(threeSum < 0){
-                    l++;
-                }
                 else{
-                    List<Integer> current = List.of(nums[i], nums[l], nums[r]);
-                    res.add(current);
+                    //means match found
+                    res.add(new ArrayList<>(Arrays.asList(nums[i], nums[l], nums[r])));
+                    //move l and r
                     l++;
-                    while(nums[l] == nums[l - 1] && l < r){
+                    r--;
+                    //skip duplicate l and r
+                    while(l < r && nums[l] == nums[l - 1]){
                         l++;
+                    }
+                    while(l < r && nums[r] == nums[r + 1]){
+                        r--;
                     }
                 }
             }
