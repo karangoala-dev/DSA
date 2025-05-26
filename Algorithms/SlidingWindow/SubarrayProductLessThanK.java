@@ -1,4 +1,4 @@
-package Algorithms.PrefixSum;
+package Algorithms.SlidingWindow;
 
 public class SubarrayProductLessThanK {
     //Most efficient
