@@ -5,8 +5,11 @@ import java.util.*;
 public class Permutations {
     List<List<Integer>> res;
     HashSet<Integer> set;
+    //TC: O(n * n!)
     public void helper(int[] nums, List<Integer> curr){
         if(curr.size() == nums.length){
+            //this step takes O(n) time :)
+            //so due to doing this n! times for each permutation, we get a TC of O(n * n!)
             res.add(new ArrayList<>(curr));
             return;
         }
