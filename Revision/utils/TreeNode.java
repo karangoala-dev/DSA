@@ -14,4 +14,9 @@ public class TreeNode {
         this.left = _l;
         this.right = _r;
     }
+
+    @Override
+    public String toString() {
+        return "val=" + val + " ";
+    }
 }
