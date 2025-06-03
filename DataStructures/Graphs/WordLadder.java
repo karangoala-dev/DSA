@@ -1,4 +1,4 @@
-package Algorithms.DynamicProgramming;
+package DataStructures.Graphs;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package Algorithms.DynamicProgramming;
+package DataStructures.Graphs;
 
 import java.util.HashSet;
 import java.util.LinkedList;
