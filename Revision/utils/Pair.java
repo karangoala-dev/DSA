@@ -7,4 +7,12 @@ public class Pair {
         this.first = _f;
         this.second = _s;
     }
+
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "first=" + first +
+                ", second=" + second +
+                '}';
+    }
 }
