@@ -62,20 +62,6 @@ public class PacificAtlanticWaterFlow {
             }
         }
 
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                System.out.print(pacific[i][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                System.out.print(atlantic[i][j] + " ");
-            }
-            System.out.println();
-        }
-
         //now accumulate result
         for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
