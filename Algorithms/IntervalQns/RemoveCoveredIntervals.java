@@ -20,6 +20,7 @@ public class RemoveCoveredIntervals {
             int[] curr = pq.poll();
             if(prev[1] >= curr[1]){
                 count++;
+                continue;
             }
             prev = curr;
         }
