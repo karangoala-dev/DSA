@@ -4,23 +4,22 @@ import java.util.*;
 
 public class CombinationSum {
     List<List<Integer>> res = new ArrayList<>();
-    public void helper(int[] candidates, int target, int ind, int currSum, List<Integer> curr){
-        if(ind >= candidates.length || currSum >= target){
+    public void helper(int[] arr, int target, int currSum, int ind, List<Integer> curr){
+        if(currSum > target){
+            return;
+        }
+        if(ind >= arr.length){
             if(currSum == target){
                 res.add(new ArrayList<>(curr));
             }
             return;
         }
-
-        //take and repeat
-        curr.add(candidates[ind]);
-        currSum += candidates[ind];
-        helper(candidates, target, ind, currSum, curr);
-
-        //backtrack and move to next
+        //take and stay there
+        curr.add(arr[ind]);
+        helper(arr, target, currSum + arr[ind], ind, curr);
+        //not take and move ahead
         curr.remove(curr.size() - 1);
-        currSum -= candidates[ind];
-        helper(candidates, target, ind + 1, currSum, curr);
+        helper(arr, target, currSum, ind + 1, curr);
     }
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         helper(candidates, target, 0, 0, new ArrayList<>());
