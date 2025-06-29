@@ -25,6 +25,38 @@ public class SingleElementInSortedArray {
         }
         return -1;
     }
+    //Optimised version, O(log n)
+    public int singleNonDuplicate(int[] nums) {
+        //always go to the side which is not equal to mid
+        int l = 0, r = nums.length - 1;
+        while (l <= r){
+            int mid  = l + ((r - l) / 2);
+            //edge case handling
+            if(mid == 0 || mid == nums.length - 1 || (nums[mid] != nums[mid - 1] && (nums[mid] != nums[mid + 1]))){
+                return nums[mid];
+            }
+
+            //if even then must be equal to prev ind
+            if((mid + 1) % 2 == 0){
+                if(nums[mid - 1] == nums[mid]){
+                    l = mid + 1;
+                }
+                else {
+                    r = mid - 1;
+                }
+            }
+            else {
+                //else must be equal to next index
+                if(nums[mid + 1] == nums[mid]){
+                    l = mid + 1;
+                }
+                else {
+                    r = mid - 1;
+                }
+            }
+        }
+        return nums[l];
+    }
     public static void main(String[] args) {
 
     }
